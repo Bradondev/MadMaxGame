@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://fpex2gkird0d"]
+
+[ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="1_6jqk7"]
+[ext_resource type="Texture2D" uid="uid://c7wqhgdlpmlct" path="res://Assests/CarParts/Waepons.png" id="1_oc1mf"]
+[ext_resource type="PackedScene" uid="uid://dql20a05yqhap" path="res://Scene/projectlie_base.tscn" id="2_qod5s"]
+
+[resource]
+script = ExtResource("1_6jqk7")
+damage = 10
+fire_rate = 10.0
+projectile_scene = ExtResource("2_qod5s")
+TypeOfPart = "Weapon"
+part_name = "Unnamed Part"
+icon = ExtResource("1_oc1mf")
+metadata/_custom_type_script = "uid://cfcejmil3kgq6"

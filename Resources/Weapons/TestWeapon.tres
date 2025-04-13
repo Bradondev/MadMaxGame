@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://cs2u58afrt5by"]
+
+[ext_resource type="Texture2D" uid="uid://dufgm7ft2rld8" path="res://Assests/CarParts/Waepons2.png" id="1_kuv70"]
+[ext_resource type="PackedScene" uid="uid://bmgmnmkmqh7do" path="res://Scene/BigProjectile.tscn" id="2_kuv70"]
+[ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="3_xltrp"]
+
+[resource]
+script = ExtResource("3_xltrp")
+damage = 10
+fire_rate = 1.0
+projectile_scene = ExtResource("2_kuv70")
+TypeOfPart = "Weapon"
+part_name = "Test"
+icon = ExtResource("1_kuv70")
+metadata/_custom_type_script = "uid://cfcejmil3kgq6"

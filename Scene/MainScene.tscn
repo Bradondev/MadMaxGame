@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dxxsq8nfxacyp" path="res://Scene/test_level.tscn" id="1_uptpg"]
 
 [node name="Main" type="CanvasLayer"]
+metadata/_edit_horizontal_guides_ = [282.0]
 
 [node name="Main" type="Control" parent="."]
 layout_mode = 3

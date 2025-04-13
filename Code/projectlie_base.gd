@@ -10,6 +10,7 @@ extends Area2D
 
 @export var bullet_sprite: Sprite2D
 @export var shadow_sprite: Sprite2D
+@export var KillOnScale:bool = false
 
 func setup(dmg: int, rot: float):
 	damage = dmg
@@ -36,3 +37,11 @@ func _process(delta):
 	# Optional: Shadow gets smaller the higher the bullet is
 	var shadow_scale = clamp(1.0 - z_height / 200.0, 0.3, 1.0)
 	shadow_sprite.scale = Vector2.ONE * shadow_scale
+	if KillOnScale:
+		if shadow_sprite.scale == Vector2(1,1):
+			queue_free()
+
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

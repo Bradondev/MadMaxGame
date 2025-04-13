@@ -1,12 +1,12 @@
 extends CarPart
 class_name Wheel
 
-@export var speed: float = 0.0
-
+@export var MaxSpeed: float = 0.0
+@export var SteeringPower: float = 0.0
 
 func set_speed(value: float) -> void:
-    speed = value
-    print("Speed set to:", speed)
+    MaxSpeed = value
+    print("Speed set to:", MaxSpeed)
 
 func get_speed() -> float:
-    return speed
+    return MaxSpeed

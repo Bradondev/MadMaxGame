@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_42ees")
 Health = 100.0
+TypeOfPart = "Body"
 part_name = "Unnamed Part"
 icon = ExtResource("1_7t2d4")
 metadata/_custom_type_script = "uid://byrnnkgvdi4fg"

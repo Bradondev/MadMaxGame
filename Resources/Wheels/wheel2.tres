@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Wheel" load_steps=3 format=3 uid="uid://dpwb1b65l2rjq"]
+
+[ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_rup54"]
+[ext_resource type="Script" uid="uid://kwynu6u1kdrb" path="res://Code/ResourceCode/Wheels.gd" id="2_0vka7"]
+
+[resource]
+script = ExtResource("2_0vka7")
+speed = 0.0
+TypeOfPart = "Wheels"
+part_name = "Unnamed Part"
+icon = ExtResource("1_rup54")
+metadata/_custom_type_script = "uid://kwynu6u1kdrb"

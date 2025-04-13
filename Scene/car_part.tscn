@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://jucjm4646tn5"]
+[gd_scene load_steps=11 format=3 uid="uid://jucjm4646tn5"]
 
 [ext_resource type="Script" uid="uid://be4yv2sopqy7f" path="res://car_partObject.gd" id="1_huo5s"]
-[ext_resource type="Resource" uid="uid://lb6t1inqtv03" path="res://Resources/Bodys/body1.tres" id="2_0hvxs"]
+[ext_resource type="Resource" uid="uid://dk2wsyh72j1j5" path="res://Resources/Bodys/body2.tres" id="2_0hvxs"]
 [ext_resource type="Script" uid="uid://dm1r7k4yaha83" path="res://Code/DragAndDrop.gd" id="2_afprw"]
 [ext_resource type="Script" uid="uid://cd2y15jn81ln3" path="res://Code/Outline_HighLigther.gd" id="3_0hvxs"]
+[ext_resource type="PackedScene" uid="uid://b4pddaaj23x27" path="res://Scene/UnitBase.tscn" id="3_2bd1n"]
 [ext_resource type="Shader" uid="uid://ddbncar8u1knj" path="res://Code/OutLine.gdshader" id="4_afprw"]
 [ext_resource type="Texture2D" uid="uid://be8yy0wl27457" path="res://Assests/CarParts/Body2.png" id="4_pecp6"]
+[ext_resource type="Script" uid="uid://d4k8bmh7g5fd8" path="res://Code/pop.gd" id="7_pecp6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bd1n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0hvxs"]
+resource_local_to_scene = true
 shader = ExtResource("4_afprw")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -17,11 +20,13 @@ shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = false
 
-[node name="CarPart" type="Node2D" node_paths=PackedStringArray("icon", "DropHitBox")]
+[node name="CarPart" type="Node2D" node_paths=PackedStringArray("icon", "DropHitBox", "PopConponet") groups=["CarPart"]]
 script = ExtResource("1_huo5s")
 part = ExtResource("2_0hvxs")
 icon = NodePath("Part")
 DropHitBox = NodePath("Area2D")
+PopConponet = NodePath("pop")
+CarScene = ExtResource("3_2bd1n")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2048
@@ -45,6 +50,11 @@ material = SubResource("ShaderMaterial_0hvxs")
 texture = ExtResource("4_pecp6")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="pop" type="Node" parent="."]
+script = ExtResource("7_pecp6")
+move_distance = 32.0
+pop_back = false
 
 [connection signal="drag_started" from="DragAndDrop" to="OutlineHighlighter" method="highlight"]
 [connection signal="dropped" from="DragAndDrop" to="." method="PartChange" unbinds=1]
