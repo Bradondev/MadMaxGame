@@ -66,6 +66,9 @@ func recalculate_fleet_information() -> void:
 
 func SetTarget(target: Node2D) -> void:
 	targetT = target
+	if(target == null):
+		for i in cars.size():
+			cars[i].set_gun_target(null)
 	var angle = randf() * TAU  # TAU is 2 * PI
 	targetOffset =  Vector2(cos(angle), sin(angle)) * 30
 
