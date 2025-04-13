@@ -17,17 +17,20 @@ averaged_settings = ExtResource("2_ifsfr")
 fleet_position_holder = NodePath("../FleetPositionManger")
 prediction_offset = 0.6
 
-[node name="FleetPositionManger" parent="." instance=ExtResource("3_thy57")]
-position = Vector2(333, 162)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(320, 180)
 texture = ExtResource("1_5jhp1")
 
+[node name="FleetPositionManger" parent="." instance=ExtResource("3_thy57")]
+position = Vector2(333, 162)
+
 [node name="CarUnit" parent="." instance=ExtResource("2_kicsh")]
-position = Vector2(335, 169)
+position = Vector2(189, 169)
+
+[node name="Camera2D" parent="CarUnit" index="9"]
+enabled = true
 
 [node name="CarUnit2" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(288, 204)
