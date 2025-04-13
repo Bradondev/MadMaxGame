@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://orqg22w2w5eg"]
+[gd_scene load_steps=11 format=3 uid="uid://cvcrad2hrsj1a"]
 
-[ext_resource type="Texture2D" uid="uid://baca2b3jqrfs8" path="res://Assests/ParticleTextures/Explosion.png" id="1_u32tq"]
-[ext_resource type="Texture2D" uid="uid://b6itq7a51cthm" path="res://Assests/ParticleTextures/SmallParticle.png" id="2_bku3p"]
+[ext_resource type="Texture2D" uid="uid://baca2b3jqrfs8" path="res://Assests/ParticleTextures/Explosion.png" id="1_gqi5r"]
+[ext_resource type="Texture2D" uid="uid://b6itq7a51cthm" path="res://Assests/ParticleTextures/SmallParticle.png" id="2_f6852"]
 
 [sub_resource type="Curve" id="Curve_bku3p"]
 _data = [Vector2(0.0786517, 0.101124), 0.0, 5.73333, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -81,7 +81,7 @@ y_sort_enabled = true
 emitting = false
 amount = 40
 sub_emitter = NodePath("ExplosionParticle2")
-texture = ExtResource("1_u32tq")
+texture = ExtResource("1_gqi5r")
 lifetime = 0.79
 one_shot = true
 explosiveness = 1.0
@@ -93,7 +93,7 @@ z_index = 1
 y_sort_enabled = true
 emitting = false
 amount = 30
-texture = ExtResource("2_bku3p")
+texture = ExtResource("2_f6852")
 lifetime = 0.91
 speed_scale = 1.45
 explosiveness = 1.0

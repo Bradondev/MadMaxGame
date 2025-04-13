@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dql20a05yqhap"]
+[gd_scene load_steps=6 format=3 uid="uid://dql20a05yqhap"]
 
 [ext_resource type="Script" uid="uid://jo25gdlaojdq" path="res://Code/projectlie_base.gd" id="1_civtv"]
+[ext_resource type="PackedScene" uid="uid://orqg22w2w5eg" path="res://Scene/machinegunhiteffect.tscn" id="2_3p66c"]
 [ext_resource type="Texture2D" uid="uid://bg5pc1v8eq435" path="res://Assests/BulletShadowt.png" id="2_ibvu6"]
 [ext_resource type="Texture2D" uid="uid://cmnct56u8mcuc" path="res://Assests/Bullet.png" id="2_njcqq"]
 
@@ -15,6 +16,7 @@ script = ExtResource("1_civtv")
 z_height = 0
 bullet_sprite = NodePath("Shadow")
 shadow_sprite = NodePath("Bullet")
+hitEffect = ExtResource("2_3p66c")
 
 [node name="Bullet" type="Sprite2D" parent="."]
 texture = ExtResource("2_ibvu6")
