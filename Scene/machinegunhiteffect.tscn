@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://orqg22w2w5eg"]
 
-[ext_resource type="Texture2D" uid="uid://b6itq7a51cthm" path="res://Assests/ParticleTextures/SmallParticle.png" id="2_bku3p"]
+[ext_resource type="Texture2D" uid="uid://b6itq7a51cthm" path="res://Assests/ParticleTextures/SmallParticle.png" id="2_f6852"]
 
 [sub_resource type="Curve" id="Curve_bku3p"]
 _data = [Vector2(0.0786517, 0.101124), 0.0, 5.73333, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -55,7 +55,7 @@ z_index = 1
 y_sort_enabled = true
 emitting = false
 amount = 4
-texture = ExtResource("2_bku3p")
+texture = ExtResource("2_f6852")
 lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
