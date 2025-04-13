@@ -31,9 +31,9 @@ particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
 direction = Vector3(0, -1, 0)
-spread = 26.115
+spread = 36.5
 flatness = 0.765
-initial_velocity_min = 175.93
+initial_velocity_min = 134.26
 initial_velocity_max = 300.92
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
@@ -76,8 +76,10 @@ hue_variation_max = 0.07
 anim_speed_max = 3.7
 
 [node name="ExplosionParticle" type="GPUParticles2D"]
+z_index = 1
+y_sort_enabled = true
 emitting = false
-amount = 30
+amount = 40
 sub_emitter = NodePath("ExplosionParticle2")
 texture = ExtResource("1_u32tq")
 lifetime = 0.79
@@ -87,9 +89,12 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1iqth")
 
 [node name="ExplosionParticle2" type="GPUParticles2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+emitting = false
 amount = 30
 texture = ExtResource("2_bku3p")
-lifetime = 0.69
+lifetime = 0.91
 speed_scale = 1.45
 explosiveness = 1.0
 randomness = 1.0

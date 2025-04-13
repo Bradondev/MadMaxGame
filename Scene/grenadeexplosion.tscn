@@ -74,15 +74,20 @@ hue_variation_max = 0.07
 anim_speed_max = 3.7
 
 [node name="ExplosionParticle" type="GPUParticles2D"]
+z_index = 1
+y_sort_enabled = true
+emitting = false
 amount = 16
 sub_emitter = NodePath("ExplosionParticle2")
 texture = ExtResource("1_fnvtj")
 lifetime = 0.34
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_fnvtj")
 
 [node name="ExplosionParticle2" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 30
 texture = ExtResource("2_cxd0l")
 lifetime = 0.69

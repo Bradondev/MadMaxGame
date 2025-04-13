@@ -12,6 +12,9 @@ extends Area2D
 @export var shadow_sprite: Sprite2D
 @export var KillOnScale:bool = false
 
+@export var landPrefab: PackedScene
+@export var hitEffect: PackedScene
+
 func setup(dmg: int, rot: float):
 	damage = dmg
 	rotation = rot
@@ -40,6 +43,19 @@ func _process(delta):
 	shadow_sprite.scale = Vector2.ONE * shadow_scale
 	if KillOnScale:
 		if shadow_sprite.scale == Vector2(1,1):
+			
+			if(landPrefab != null):
+				var effect = hitEffect.instantiate()
+				get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+				effect.global_position = global_position
+				
+			if(hitEffect != null):
+				var effect :GPUParticles2D= hitEffect.instantiate()
+				get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+				effect.global_position = global_position
+				effect.emitting= true
+				effect.finished.connect(effect.queue_free)
+				
 			queue_free()
 
 
@@ -51,5 +67,18 @@ func _on_timer_timeout() -> void:
 func _on_area_entered(area:Area2D) -> void:
 	var parent: Node2D = area.get_parent()
 	if parent.has_method("TakeDamage"):
+		
+		if(landPrefab != null):
+				var effect = hitEffect.instantiate()
+				get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+				effect.global_position = global_position
+		
+		if(hitEffect != null):
+			var effect :GPUParticles2D= hitEffect.instantiate()
+			get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+			effect.global_position = global_position
+			effect.emitting= true
+			effect.finished.connect(effect.queue_free)
+		
 		parent.TakeDamage(damage)
 		queue_free()
