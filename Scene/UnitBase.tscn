@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4pddaaj23x27"]
+[gd_scene load_steps=14 format=3 uid="uid://b4pddaaj23x27"]
 
 [ext_resource type="Script" uid="uid://dptvebtp3t0kc" path="res://Code/Part_manager.gd" id="1_83dcw"]
 [ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_la4gh"]
@@ -13,7 +13,12 @@
 [ext_resource type="Resource" uid="uid://b2foqrn14khqx" path="res://Code/Default.tres" id="6_js2t5"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="7_qb5pb"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js2t5"]
+friction = 0.0
+bounce = 0.4
+
 [node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon")]
+physics_material_override = SubResource("PhysicsMaterial_js2t5")
 gravity_scale = 0.0
 script = ExtResource("1_w5bri")
 BodyPart = ExtResource("2_cl1je")
