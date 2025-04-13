@@ -13,15 +13,14 @@ func _ready():
 	if gun_sprite == null:
 		push_warning("Gun sprite not assigned.")
 func _process(delta):
-	if !weapon:return
-	
-	# Rotate sprite to face mouse
+	if !weapon:
+		return
+
+	# Rotate parent to face the mouse
 	var mouse_pos = get_global_mouse_position()
 	var direction = (mouse_pos - global_position).normalized()
-	rotation = direction.angle()
-	if gun_sprite:
-		
-		gun_sprite.rotation = rotation - 90.0
+	var target_angle = direction.angle()
+	global_rotation = target_angle - deg_to_rad(90)
 		
 		
 	# Fire on input
