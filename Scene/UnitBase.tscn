@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4pddaaj23x27"]
+[gd_scene load_steps=16 format=3 uid="uid://b4pddaaj23x27"]
 
 [ext_resource type="Script" uid="uid://dptvebtp3t0kc" path="res://Code/Part_manager.gd" id="1_83dcw"]
 [ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_la4gh"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dgfpr2ywyvqsc" path="res://Code/weaponGUn.gd" id="6_7flla"]
 [ext_resource type="Resource" uid="uid://b2foqrn14khqx" path="res://Code/Default.tres" id="6_js2t5"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="7_qb5pb"]
+[ext_resource type="PackedScene" uid="uid://boa2w5l5p37ce" path="res://Scene/cartrail.tscn" id="14_qr411"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js2t5"]
 friction = 0.0
@@ -85,3 +86,15 @@ polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
+
+[node name="TrailParticle3" parent="." instance=ExtResource("14_qr411")]
+position = Vector2(8, -3)
+
+[node name="TrailParticle4" parent="." instance=ExtResource("14_qr411")]
+position = Vector2(-9, -3)
+
+[node name="TrailParticle5" parent="." instance=ExtResource("14_qr411")]
+position = Vector2(11, 10)
+
+[node name="TrailParticle6" parent="." instance=ExtResource("14_qr411")]
+position = Vector2(-11, 10)
