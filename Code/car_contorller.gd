@@ -45,12 +45,12 @@ func _process(delta: float) -> void:
 		var angle_to_target = rad_to_deg(direction_to_target.angle_to(get_parent().transform.y))
 		var forward_dot = get_parent().transform.y.dot(direction_to_target)
 
-		steer_input = clamp(angle_to_target, -1.0, 1.0)
-		var normalized_forward_dot = inverse_lerp(1.0, -1.0, forward_dot)
-		steer_input *= normalized_forward_dot
+		steer_input = clamp(angle_to_target, -2.0, 2.0)
+		var normalized_forward_dot = inverse_lerp(-1.0, 1.0, forward_dot)
+		#steer_input *= normalized_forward_dot
 
 		var distance = get_parent().global_position.distance_to(target_position)
-		if distance > 1.5:
+		if distance > 30:
 			accel_input = 1.0
 		else:
 			accel_input = 0.0

@@ -28,6 +28,7 @@ position = Vector2(333, 162)
 
 [node name="CarUnit" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(189, 169)
+angular_damp = 0.1
 
 [node name="Camera2D" parent="CarUnit" index="9"]
 enabled = true

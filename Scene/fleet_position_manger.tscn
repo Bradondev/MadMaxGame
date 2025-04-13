@@ -3,22 +3,21 @@
 [node name="FleetPositionManger" type="Node2D"]
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-64, 16)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(64, 16)
+position = Vector2(-67.67, 22.465)
 
 [node name="Marker2D7" type="Marker2D" parent="."]
-position = Vector2(0, 24)
-
-[node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(-64, 64)
-
-[node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(64, 64)
-
-[node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(0, 80)
+position = Vector2(64, 24)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(0, 56)
+position = Vector2(0, 63.385)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(-64, 95.375)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(64, 95.375)
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(0, 147.58)
