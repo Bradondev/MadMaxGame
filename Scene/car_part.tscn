@@ -56,6 +56,8 @@ script = ExtResource("7_pecp6")
 move_distance = 32.0
 pop_back = false
 
+[connection signal="mouse_entered" from="Area2D" to="OutlineHighlighter" method="highlight"]
+[connection signal="mouse_exited" from="Area2D" to="OutlineHighlighter" method="clear_highlight"]
 [connection signal="drag_started" from="DragAndDrop" to="OutlineHighlighter" method="highlight"]
 [connection signal="dropped" from="DragAndDrop" to="." method="PartChange" unbinds=1]
 [connection signal="dropped" from="DragAndDrop" to="OutlineHighlighter" method="clear_highlight" unbinds=1]
