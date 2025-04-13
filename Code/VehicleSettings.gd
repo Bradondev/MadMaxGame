@@ -1,6 +1,6 @@
 extends Resource
 class_name VehicleSettings
-@icon("res://icon.svg") # Optional icon for editor display
+# Optional icon for editor display
 
 @export var engine_power: float = 5.0
 @export var max_speed: float = 10.0

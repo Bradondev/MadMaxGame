@@ -1,6 +1,6 @@
-extends Node2D
+extends Node
 
-@export var cars: Array[CarController] = []
+@export var cars: Array[car_controller] = []
 @export var averaged_settings: VehicleSettings = VehicleSettings.new()
 
 @export var fleet_position_holder: Node2D
@@ -21,7 +21,7 @@ func _ready() -> void:
 
 	# Assign starting positions
 	for i in range(min(cars.size(), fleet_positions.size())):
-		cars[i].global_position = fleet_positions[i].global_position
+		cars[i].get_parent().global_position = fleet_positions[i].global_position
 
 	recalculate_fleet_information()
 
@@ -52,7 +52,7 @@ func recalculate_fleet_information() -> void:
 func _process(delta: float) -> void:
 	get_input()
 	apply_input()
-
+	print_debug(input_vector)
 	delay_timer -= delta
 	if delay_timer < 0:
 		delay_timer = delay
@@ -60,8 +60,8 @@ func _process(delta: float) -> void:
 
 
 func get_input() -> void:
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
+	input_vector.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
+	input_vector.y = Input.get_action_strength("Up") - Input.get_action_strength("Down")
 
 
 func apply_input() -> void:
@@ -75,17 +75,8 @@ func align_fleet() -> void:
 
 	var leader = cars[0]
 	fleet_position_holder.global_position = leader.get_future_position(prediction_offset)
-	fleet_position_holder.rotation = leader.rotation
+	fleet_position_holder.rotation = leader.get_parent().rotation
 
 	for i in range(1, cars.size()):
 		if i < fleet_positions.size():
 			cars[i].take_position(fleet_positions[i].global_position, leader.rotation_degrees)
-
-
-func _draw() -> void:
-	if fleet_positions.is_empty():
-		return
-
-	draw_set_color(Color.RED)
-	for pos in fleet_positions:
-		draw_circle(to_local(pos.global_position), 15, Color.RED)
