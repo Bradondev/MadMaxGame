@@ -34,12 +34,24 @@ enabled = true
 
 [node name="CarUnit2" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(288, 204)
+angular_damp = 0.0
+
+[node name="CollisionPolygon2D" parent="CarUnit2" index="2"]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
 
 [node name="CarUnit3" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(399, 222)
+angular_damp = 0.0
+
+[node name="CollisionPolygon2D" parent="CarUnit3" index="2"]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
 
 [node name="CarUnit4" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(198, 283)
+angular_damp = 0.0
+
+[node name="CollisionPolygon2D" parent="CarUnit4" index="2"]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
 
 [node name="CarPart" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
