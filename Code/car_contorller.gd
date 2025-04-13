@@ -67,8 +67,8 @@ func _physics_process(delta: float) -> void:
 
 	# Acceleration
 	if accel_input != 0.0 and abs(current_speed) < 10:
-		var available_torque = averaged_settings.power_curve.sample(normalized_speed) * accel_input
-		get_parent().apply_force(forward  * 40)
+		var available_torque = accel_input
+		get_parent().apply_force(forward  * available_torque* 40)
 		
 	
 	# Braking
@@ -84,6 +84,6 @@ func _physics_process(delta: float) -> void:
 	# Steering
 	var direction_multiplier = -1.0 if current_speed >= 0.0 else  1.0
 	var available_steering =  1.0 if Input.is_action_pressed("drift") else  averaged_settings.steer_curve.sample(normalized_speed)
-	var steer_amount = steer_input * * available_steering * normalized_speed
+	var steer_amount = steer_input #* averaged_settings.steer_speed #* available_steering * normalized_speed
 	current_steer = lerp(current_steer, steer_amount, 10 *delta)
 	get_parent().rotation = current_steer #* direction_multiplier * delta
