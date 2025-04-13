@@ -21,6 +21,8 @@ sub_emitter_mode = 4
 sub_emitter_amount_at_start = 1
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 1
+y_sort_enabled = true
 emitting = false
 amount = 6
 sub_emitter = NodePath("../GPUParticles2D2")
@@ -30,6 +32,8 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1lmk5")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 amount = 6
 texture = ExtResource("2_ce2n5")
 explosiveness = 1.0
