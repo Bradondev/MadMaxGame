@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="7_d452q"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="8_8ld3n"]
 [ext_resource type="Resource" uid="uid://fpex2gkird0d" path="res://Resources/Weapons/weapon1.tres" id="9_1ggbh"]
-[ext_resource type="Resource" uid="uid://dbgte6ypw2rjj" path="res://Resources/Weapons/weapon3.tres" id="10_ke7ow"]
+[ext_resource type="Resource" uid="uid://dp30a3lpucijo" path="res://Resources/Weapons/weapon3.tres" id="10_ke7ow"]
 
 [node name="Main" type="CanvasLayer"]
 metadata/_edit_horizontal_guides_ = [282.0]
