@@ -87,6 +87,7 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_fnvtj")
 
 [node name="ExplosionParticle2" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 30
 texture = ExtResource("2_cxd0l")
 lifetime = 0.69

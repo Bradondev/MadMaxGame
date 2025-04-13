@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://orqg22w2w5eg"]
+[gd_scene load_steps=9 format=3 uid="uid://boa2w5l5p37ce"]
 
-[ext_resource type="Texture2D" uid="uid://baca2b3jqrfs8" path="res://Assests/ParticleTextures/Explosion.png" id="1_u32tq"]
-[ext_resource type="Texture2D" uid="uid://b6itq7a51cthm" path="res://Assests/ParticleTextures/SmallParticle.png" id="2_bku3p"]
+[ext_resource type="Texture2D" uid="uid://baca2b3jqrfs8" path="res://Assests/ParticleTextures/Explosion.png" id="1_1um4s"]
 
 [sub_resource type="Curve" id="Curve_bku3p"]
 _data = [Vector2(0.0786517, 0.101124), 0.0, 5.73333, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -25,7 +24,7 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_6yjfb"]
 curve = SubResource("Curve_fhngu")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1iqth"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ovvqk"]
 lifetime_randomness = 0.6
 particle_flag_disable_z = true
 angle_min = -720.0
@@ -51,54 +50,11 @@ anim_speed_max = 3.7
 sub_emitter_mode = 4
 sub_emitter_amount_at_start = 1
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o5wjc"]
-lifetime_randomness = 0.6
-particle_flag_disable_z = true
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(0, -1, 0)
-spread = 46.884
-flatness = 0.765
-initial_velocity_min = 175.93
-initial_velocity_max = 300.92
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
-gravity = Vector3(0, 800, 0)
-damping_min = 43.981
-damping_max = 75.925
-damping_curve = SubResource("CurveTexture_6yjfb")
-scale_min = 0.9
-scale_max = 1.1
-color_ramp = SubResource("GradientTexture1D_7h117")
-alpha_curve = SubResource("CurveTexture_o5wjc")
-hue_variation_min = -0.1
-hue_variation_max = 0.07
-anim_speed_max = 3.7
-
 [node name="ExplosionParticle" type="GPUParticles2D"]
 z_index = 1
 y_sort_enabled = true
-emitting = false
 amount = 40
-sub_emitter = NodePath("ExplosionParticle2")
-texture = ExtResource("1_u32tq")
+texture = ExtResource("1_1um4s")
 lifetime = 0.79
-one_shot = true
-explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_1iqth")
-
-[node name="ExplosionParticle2" type="GPUParticles2D" parent="."]
-z_index = 1
-y_sort_enabled = true
-emitting = false
-amount = 30
-texture = ExtResource("2_bku3p")
-lifetime = 0.91
-speed_scale = 1.45
-explosiveness = 1.0
-randomness = 1.0
-trail_enabled = true
-trail_lifetime = 0.39
-trail_sections = 10
-process_material = SubResource("ParticleProcessMaterial_o5wjc")
+process_material = SubResource("ParticleProcessMaterial_ovvqk")
