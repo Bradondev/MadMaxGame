@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name  Car
+class_name car
 @export var BodyPart:Body
 @export var WeaponPart:Weapon
 @export var WheelPart:Wheel
@@ -7,10 +7,20 @@ class_name  Car
 @export var  BodyIcon: Sprite2D
 @export var  WheelIcon: Sprite2D
 @export var  WeaponIcon: Sprite2D
+@export var settings: VehicleSettings = VehicleSettings.new()
+var averaged_settings: VehicleSettings
+
+var accel_input: float = 0.0
+var steer_input: float = 0.0
+
+var current_steer: float = 0.0
+
+var target_position: Vector2
+var target_angle: float = 0.0
+
+var is_leader: bool = false
 
 
-func _ready():
-	UpdateSprites()
 func UpdateSprites() -> void:
 	if BodyPart != null and BodyIcon != null:
 		BodyIcon.texture = BodyPart.icon
@@ -35,4 +45,10 @@ func ReplacePart(Part: CarPart, GameObjectPart:GameObject) -> void:
 			push_warning("Unknown part type: " + Part.TypeOfPart)
 	GameObjectPart.UpdateSprte()
 	print_debug("aaaaaaaaaaa")
+	UpdateSprites()
+
+
+
+
+func _ready():
 	UpdateSprites()

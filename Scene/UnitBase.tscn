@@ -22,6 +22,7 @@ WheelPart = ExtResource("4_mgsx1")
 BodyIcon = NodePath("Body")
 WheelIcon = NodePath("Wheel")
 WeaponIcon = NodePath("Weapon")
+settings = ExtResource("6_js2t5")
 
 [node name="CarContorller" type="Node" parent="."]
 script = ExtResource("5_mgsx1")
@@ -37,6 +38,9 @@ polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3
 
 [node name="PartManager" type="Node" parent="." node_paths=PackedStringArray("WheelSprite", "BodySprite", "WeaponSprite")]
 script = ExtResource("1_83dcw")
+CarBody = ExtResource("2_cl1je")
+CarWheels = ExtResource("4_mgsx1")
+CarWeapon = ExtResource("7_qb5pb")
 WheelSprite = NodePath("../Wheel")
 BodySprite = NodePath("../Body")
 WeaponSprite = NodePath("../Weapon")
@@ -69,3 +73,6 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UpgradeHitBox"]
 polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false

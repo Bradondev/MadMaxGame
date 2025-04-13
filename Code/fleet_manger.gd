@@ -52,7 +52,6 @@ func recalculate_fleet_information() -> void:
 func _process(delta: float) -> void:
 	get_input()
 	apply_input()
-	print_debug(input_vector)
 	delay_timer -= delta
 	if delay_timer < 0:
 		delay_timer = delay
@@ -62,6 +61,7 @@ func _process(delta: float) -> void:
 func get_input() -> void:
 	input_vector.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	input_vector.y = Input.get_action_strength("Up") - Input.get_action_strength("Down")
+	
 
 
 func apply_input() -> void:
@@ -79,4 +79,5 @@ func align_fleet() -> void:
 
 	for i in range(1, cars.size()):
 		if i < fleet_positions.size():
-			cars[i].take_position(fleet_positions[i].global_position, leader.rotation_degrees)
+			cars[i].take_position(fleet_positions[i].global_position, leader.get_parent().rotation_degrees)
+			

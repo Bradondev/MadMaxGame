@@ -23,8 +23,8 @@ func PartChange()->void:
 			pass
 		unitsAreas[0].get_parent().ReplacePart(part,self)
 		print_debug("replace")
-func  CreateNewCar(BodyPart:CarPart,OtherPart:CarPart)->Car:
-	var NewCar:Car = CarScene.instantiate()
+func  CreateNewCar(BodyPart:CarPart,OtherPart:CarPart)->car:
+	var NewCar:car = CarScene.instantiate()
 	NewCar.BodyPart = BodyPart
 	NewCar.WheelPart = OtherPart
 	return NewCar
