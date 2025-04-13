@@ -3,6 +3,7 @@ extends Node
 class_name FleetManager
 
 @export var playerFleet: FleetManager
+@export var explosionEffec: PackedScene
 @export var cars: Array[car_controller] = []
 @export var averaged_settings: VehicleSettings
 @export var isPlayer: bool
@@ -135,6 +136,12 @@ func  AddNewCar(NewCar:car)->void:
 	pass
 	
 func  RemoveCar(CarToRemove:car_controller)->void:
+	var effect :GPUParticles2D= explosionEffec.instantiate()
+	get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+	effect.global_position = CarToRemove.global_position
+	effect.emitting= true
+	effect.finished.connect(effect.queue_free)
+	
 	cars.erase(CarToRemove)
 	CarToRemove.get_parent().queue_free()
 	recalculate_fleet_information()
