@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 class_name  Car
 @export var BodyPart:Body
 @export var WeaponPart:Weapon

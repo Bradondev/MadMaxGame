@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4pddaaj23x27"]
+[gd_scene load_steps=12 format=3 uid="uid://b4pddaaj23x27"]
 
 [ext_resource type="Script" uid="uid://dptvebtp3t0kc" path="res://Code/Part_manager.gd" id="1_83dcw"]
 [ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_la4gh"]
@@ -8,10 +8,12 @@
 [ext_resource type="Resource" uid="uid://lb6t1inqtv03" path="res://Resources/Bodys/body1.tres" id="2_cl1je"]
 [ext_resource type="Texture2D" uid="uid://dufgm7ft2rld8" path="res://Assests/CarParts/Waepons2.png" id="3_7flla"]
 [ext_resource type="Resource" uid="uid://bv2msb1tic0cf" path="res://Resources/Wheels/wheel1.tres" id="4_mgsx1"]
+[ext_resource type="Script" uid="uid://bi0nchwrlb0bw" path="res://Code/car_contorller.gd" id="5_mgsx1"]
 [ext_resource type="Script" uid="uid://dgfpr2ywyvqsc" path="res://Code/weaponGUn.gd" id="6_7flla"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="7_qb5pb"]
 
 [node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon")]
+gravity_scale = 0.0
 script = ExtResource("1_w5bri")
 BodyPart = ExtResource("2_cl1je")
 WeaponPart = ExtResource("7_qb5pb")
@@ -19,6 +21,9 @@ WheelPart = ExtResource("4_mgsx1")
 BodyIcon = NodePath("Body")
 WheelIcon = NodePath("Wheel")
 WeaponIcon = NodePath("Weapon")
+
+[node name="CarContorller" type="Node" parent="."]
+script = ExtResource("5_mgsx1")
 
 [node name="HitBox" type="Area2D" parent="."]
 
