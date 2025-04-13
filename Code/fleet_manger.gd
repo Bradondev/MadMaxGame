@@ -109,7 +109,7 @@ func apply_input() -> void:
 func align_enemy_fleet() -> void:
 	for i in range(cars.size()):
 		var target_index = i % playerFleet.cars.size()
-		cars[i].take_position(playerFleet.cars[target_index].get_parent().global_position, 0)
+		cars[i].take_position(playerFleet.cars[target_index].get_parent().global_position + targetOffset, 0)
 		cars[i].set_gun_target(playerFleet.cars[target_index].get_parent())
 
 func align_fleet() -> void:
