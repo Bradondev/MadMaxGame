@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxxsq8nfxacyp"]
+[gd_scene load_steps=10 format=3 uid="uid://dxxsq8nfxacyp"]
 
 [ext_resource type="Texture2D" uid="uid://cxv2wof2ulqts" path="res://Assests/Bg.png" id="1_5jhp1"]
 [ext_resource type="PackedScene" uid="uid://ir2m2n5gvxcv" path="res://Scene/fleet_manger.tscn" id="1_ifsfr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://jucjm4646tn5" path="res://Scene/car_part.tscn" id="3_si1yy"]
 [ext_resource type="PackedScene" uid="uid://c2607bh2tmhl1" path="res://Scene/fleet_position_manger.tscn" id="3_thy57"]
 [ext_resource type="Resource" uid="uid://fpex2gkird0d" path="res://Resources/Weapons/weapon1.tres" id="4_1tbln"]
+[ext_resource type="Script" uid="uid://kq30lu2o3dt5" path="res://Code/EnemyPackInitializer.gd" id="4_2ue6q"]
 [ext_resource type="Resource" uid="uid://dpwb1b65l2rjq" path="res://Resources/Wheels/wheel2.tres" id="5_7gbo7"]
 
 [node name="TestLevel" type="Node2D"]
@@ -14,8 +15,21 @@
 [node name="FleetManger" parent="." node_paths=PackedStringArray("cars", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
 cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorller"), NodePath("../CarUnit3/CarContorller"), NodePath("../CarUnit4/CarContorller")]
 averaged_settings = ExtResource("2_ifsfr")
+isPlayer = true
 fleet_position_holder = NodePath("../FleetPositionManger")
 prediction_offset = 0.6
+
+[node name="FleetManger2" parent="." node_paths=PackedStringArray("cars", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorller"), NodePath("../CarUnit3/CarContorller"), NodePath("../CarUnit4/CarContorller")]
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("../FleetPositionManger")
+prediction_offset = 0.6
+
+[node name="FleetPositionManger2" parent="FleetManger2" instance=ExtResource("3_thy57")]
+position = Vector2(333, 162)
+
+[node name="Node" type="Node" parent="FleetManger2"]
+script = ExtResource("4_2ue6q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
