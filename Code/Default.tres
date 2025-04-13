@@ -12,12 +12,12 @@ point_count = 2
 
 [resource]
 script = ExtResource("1_6mh4w")
-engine_power = 40.0
-max_speed = 10.0
+engine_power = 800.0
+max_speed = 200.0
 power_curve = SubResource("Curve_ssbah")
-steer_speed = 12.0
+steer_speed = 0.1
 steer_curve = SubResource("Curve_8vafm")
 drift_factor = 0.95
 grip_factor = 0.05
-brake_friction = 5.0
+brake_friction = 0.2
 metadata/_custom_type_script = "uid://dm04u7al4obl6"

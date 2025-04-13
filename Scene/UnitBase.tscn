@@ -17,7 +17,7 @@
 friction = 0.0
 bounce = 1.0
 
-[node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon")]
+[node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon", "carcontroller")]
 physics_material_override = SubResource("PhysicsMaterial_js2t5")
 gravity_scale = 0.0
 angular_damp = 0.1
@@ -28,6 +28,7 @@ WheelPart = ExtResource("4_mgsx1")
 BodyIcon = NodePath("Body")
 WheelIcon = NodePath("Wheel")
 WeaponIcon = NodePath("Weapon")
+carcontroller = NodePath("CarContorller")
 settings = ExtResource("6_js2t5")
 
 [node name="CarContorller" type="Node" parent="."]

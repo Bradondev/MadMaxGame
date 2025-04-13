@@ -29,7 +29,7 @@ PopConponet = NodePath("pop")
 CarScene = ExtResource("3_2bd1n")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2048
+collision_layer = 2176
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Area2D"]

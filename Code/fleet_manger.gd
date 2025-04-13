@@ -81,3 +81,9 @@ func align_fleet() -> void:
 		if i < fleet_positions.size():
 			cars[i].take_position(fleet_positions[i].global_position, leader.get_parent().rotation_degrees)
 			
+func  AddNewCar(NewCar:car)->void:
+	NewCar.global_position = get_tree().get_first_node_in_group("MainLevel").get_global_mouse_position()
+	get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
+	cars.append(NewCar.carcontroller)
+	NewCar.carcontroller.set_info(false, averaged_settings)
+	pass
