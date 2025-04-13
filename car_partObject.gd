@@ -6,6 +6,8 @@ class_name  car_part_obj
 @export var DropHitBox:Area2D
 @export var PopConponet: PopOut
 @export var CarScene:PackedScene
+@export var ParticleEffect:PackedScene
+
 func _ready():
 	UpdateSprte()
 	
@@ -25,6 +27,12 @@ func PartChange()->void:
 				self.queue_free() 
 			return
 		unitsAreas[0].get_parent().ReplacePart(part,self)
+		var effect :GPUParticles2D= ParticleEffect.instantiate()
+		get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+		effect.global_position = global_position
+		unitsAreas[0].global_rotation = 0.0
+		effect.emitting= true
+		effect.finished.connect(effect.queue_free)
 		print_debug("replace")
 func CreateNewCar(Part: CarPart, OtherPart: CarPart) -> car:
 	var body_part: CarPart
@@ -55,4 +63,12 @@ func CreateNewCar(Part: CarPart, OtherPart: CarPart) -> car:
 	var new_car: car = CarScene.instantiate()
 	new_car.BodyPart = body_part
 	new_car.WheelPart = wheel_part
+	
+	if(get_tree() != null):
+		var effect :GPUParticles2D= ParticleEffect.instantiate()
+		get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+		effect.global_position = global_position
+		effect.emitting= true
+		effect.finished.connect(effect.queue_free)
+	
 	return new_car

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://epv7h6xj275q"]
+
+[ext_resource type="Texture2D" uid="uid://bx8v1vvibyfyw" path="res://Assests/ParticleTextures/Bolt.png" id="1_ha775"]
+[ext_resource type="Texture2D" uid="uid://bdq7mt65eteid" path="res://Assests/ParticleTextures/Nut.png" id="2_ce2n5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1lmk5"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 54.842
+initial_velocity_min = 60.4
+initial_velocity_max = 269.71
+angular_velocity_min = -553.33
+angular_velocity_max = 613.33
+gravity = Vector3(0, 900, 0)
+scale_min = 0.2
+scale_max = 0.3
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 6
+sub_emitter = NodePath("../GPUParticles2D2")
+texture = ExtResource("1_ha775")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1lmk5")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 6
+texture = ExtResource("2_ce2n5")
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1lmk5")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jucjm4646tn5"]
+[gd_scene load_steps=12 format=3 uid="uid://jucjm4646tn5"]
 
 [ext_resource type="Script" uid="uid://be4yv2sopqy7f" path="res://car_partObject.gd" id="1_huo5s"]
 [ext_resource type="Resource" uid="uid://dk2wsyh72j1j5" path="res://Resources/Bodys/body2.tres" id="2_0hvxs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pddaaj23x27" path="res://Scene/UnitBase.tscn" id="3_2bd1n"]
 [ext_resource type="Shader" uid="uid://ddbncar8u1knj" path="res://Code/OutLine.gdshader" id="4_afprw"]
 [ext_resource type="Texture2D" uid="uid://be8yy0wl27457" path="res://Assests/CarParts/Body2.png" id="4_pecp6"]
+[ext_resource type="PackedScene" uid="uid://epv7h6xj275q" path="res://Scene/replacePartParticle.tscn" id="4_y7wc5"]
 [ext_resource type="Script" uid="uid://d4k8bmh7g5fd8" path="res://Code/pop.gd" id="7_pecp6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bd1n"]
@@ -27,6 +28,7 @@ icon = NodePath("Part")
 DropHitBox = NodePath("Area2D")
 PopConponet = NodePath("pop")
 CarScene = ExtResource("3_2bd1n")
+ParticleEffect = ExtResource("4_y7wc5")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2176

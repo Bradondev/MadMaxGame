@@ -95,13 +95,13 @@ polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3
 [node name="CarPart" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
 
-[node name="CarPart2" parent="." instance=ExtResource("3_si1yy")]
-position = Vector2(384, 169)
-part = ExtResource("4_1tbln")
-
 [node name="CarPart3" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
 part = ExtResource("5_7gbo7")
+
+[node name="CarPart2" parent="." instance=ExtResource("3_si1yy")]
+position = Vector2(384, 169)
+part = ExtResource("4_1tbln")
 
 [connection signal="body_entered" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
 [connection signal="body_exited" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
