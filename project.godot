@@ -13,10 +13,18 @@ config_version=5
 config/name="MadMax"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+SodaAudioManager="*res://addons/SodaAudioManager/Scenes/soda_audio_manager.scn"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SodaAudioManager/plugin.cfg")
 
 [file_customization]
 
