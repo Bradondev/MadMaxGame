@@ -20,8 +20,11 @@ func _ready():
 		print_debug(enemy)
 		var newCar = enemy.CreateNewCar(
 			enemyBodyParts[rng.randi_range(0, enemyBodyParts.size() - 1)],
-			enemyWheelParts[rng.randi_range(0, enemyWheelParts.size() - 1)]
+			enemyWheelParts[rng.randi_range(0, enemyWheelParts.size() - 1)],
+			enemyWeaponParts.pick_random()
 			)
+		
+		
 		newCar.add_to_group("Enemies")
 		newCar.Cam.enabled = false
 		add_child(newCar)
