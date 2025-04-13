@@ -2,6 +2,7 @@ extends Node
 
 @export var cars: Array[car_controller] = []
 @export var averaged_settings: VehicleSettings
+@export var isPlayer: bool
 
 @export var fleet_position_holder: Node2D
 var fleet_positions: Array[Node2D] = []
@@ -11,7 +12,8 @@ var fleet_positions: Array[Node2D] = []
 
 var delay_timer: float = 0.0
 var input_vector: Vector2 = Vector2.ZERO
-
+var targetT: Node2D
+var targetOffset: Vector2
 
 func _ready() -> void:
 	# Populate fleet_positions from children of fleet_position_holder
@@ -29,10 +31,12 @@ func _ready() -> void:
 
 	# Set leader/follower info
 	if cars.size() > 0:
-		cars[0].set_info(true, averaged_settings)
+		cars[0].set_info(isPlayer, averaged_settings)
 
 	for i in range(1, cars.size()):
 		cars[i].set_info(false, averaged_settings)
+		
+	align_fleet()
 
 
 func recalculate_fleet_information() -> void:
@@ -57,10 +61,20 @@ func recalculate_fleet_information() -> void:
 	print_debug(averaged_settings.engine_power)
 		
 
+func SetTarget(target: Node2D) -> void:
+	targetT = target
+	var angle = randf() * TAU  # TAU is 2 * PI
+	targetOffset =  Vector2(cos(angle), sin(angle)) * 40
 
 func _process(delta: float) -> void:
-	get_input()
-	apply_input()
+	
+	if(isPlayer):
+		get_input()
+		apply_input()
+	else:
+		if(targetT !=  null):
+			cars[0].take_position(targetT.global_position + targetOffset, 0)
+		
 	delay_timer -= delta
 	if delay_timer < 0:
 		delay_timer = delay
