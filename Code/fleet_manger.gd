@@ -95,4 +95,6 @@ func  AddNewCar(NewCar:car)->void:
 	get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
 	cars.append(NewCar.carcontroller)
 	NewCar.carcontroller.set_info(false, averaged_settings)
+	NewCar.carcontroller.initalize()
+	recalculate_fleet_information()
 	pass
