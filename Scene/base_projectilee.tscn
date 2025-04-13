@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dql20a05yqhap"]
+[gd_scene load_steps=6 format=3 uid="uid://cpd68ciu0kk22"]
 
-[ext_resource type="Script" uid="uid://jo25gdlaojdq" path="res://Code/projectlie_base.gd" id="1_civtv"]
-[ext_resource type="Texture2D" uid="uid://bg5pc1v8eq435" path="res://Assests/BulletShadowt.png" id="2_ibvu6"]
-[ext_resource type="Texture2D" uid="uid://cmnct56u8mcuc" path="res://Assests/Bullet.png" id="2_njcqq"]
+[ext_resource type="Script" uid="uid://jo25gdlaojdq" path="res://Code/projectlie_base.gd" id="1_6kf23"]
+[ext_resource type="PackedScene" uid="uid://orqg22w2w5eg" path="res://Scene/machinegunhiteffect.tscn" id="2_yd6lf"]
+[ext_resource type="Texture2D" uid="uid://bg5pc1v8eq435" path="res://Assests/BulletShadowt.png" id="3_k85ww"]
+[ext_resource type="Texture2D" uid="uid://cmnct56u8mcuc" path="res://Assests/Bullet.png" id="4_ki4bo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njcqq"]
 radius = 3.0
@@ -11,16 +12,17 @@ height = 6.0
 [node name="ProjectlieBase" type="Area2D" node_paths=PackedStringArray("bullet_sprite", "shadow_sprite")]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_civtv")
+script = ExtResource("1_6kf23")
 z_height = 0
 bullet_sprite = NodePath("Shadow")
 shadow_sprite = NodePath("Bullet")
+hitEffect = ExtResource("2_yd6lf")
 
 [node name="Bullet" type="Sprite2D" parent="."]
-texture = ExtResource("2_ibvu6")
+texture = ExtResource("3_k85ww")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("2_njcqq")
+texture = ExtResource("4_ki4bo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.19746, 1)

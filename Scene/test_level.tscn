@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxv2wof2ulqts" path="res://Assests/Bg.png" id="1_5jhp1"]
 [ext_resource type="PackedScene" uid="uid://ir2m2n5gvxcv" path="res://Scene/fleet_manger.tscn" id="1_ifsfr"]
-[ext_resource type="PackedScene" uid="uid://orqg22w2w5eg" path="res://Scene/explosionanddust.tscn" id="2_edqjk"]
+[ext_resource type="PackedScene" uid="uid://cvcrad2hrsj1a" path="res://Scene/deathexplosioneffect.tscn" id="2_edqjk"]
 [ext_resource type="Resource" uid="uid://b2foqrn14khqx" path="res://Code/Default.tres" id="2_ifsfr"]
 [ext_resource type="PackedScene" uid="uid://b4pddaaj23x27" path="res://Scene/UnitBase.tscn" id="2_kicsh"]
 [ext_resource type="PackedScene" uid="uid://jucjm4646tn5" path="res://Scene/car_part.tscn" id="3_si1yy"]
@@ -320,7 +320,7 @@ part = ExtResource("5_7gbo7")
 
 [node name="CarPart2" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
-part = ExtResource("4_1tbln")
+part = ExtResource("19_cjs4r")
 
 [node name="CarPart4" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(514, 195)

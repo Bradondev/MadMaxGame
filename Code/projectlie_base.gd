@@ -22,6 +22,9 @@ func setup(dmg: int, rot: float):
 	
 
 func _process(delta):
+	if(speed < 0.05):
+		return
+	
 	# Move forward in rotated direction
 	position += direction * speed * delta
 
