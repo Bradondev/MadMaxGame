@@ -16,6 +16,7 @@ func setup(dmg: int, rot: float):
 	damage = dmg
 	rotation = rot
 	direction = Vector2.RIGHT.rotated(rotation)
+	
 
 func _process(delta):
 	# Move forward in rotated direction

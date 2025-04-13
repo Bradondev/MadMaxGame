@@ -32,11 +32,6 @@ func _ready() -> void:
 	recalculate_fleet_information()
 
 	# Set leader/follower info
-	if cars.size() > 0:
-		cars[0].set_info(isPlayer, isPlayer, averaged_settings)
-
-	for i in range(1, cars.size()):
-		cars[i].set_info(isPlayer, false, averaged_settings)
 		
 	align_fleet()
 
@@ -63,6 +58,11 @@ func recalculate_fleet_information() -> void:
 	
 	averaged_settings = settingsNew.duplicate(true)
 		
+	if cars.size() > 0:
+		cars[0].set_info(isPlayer, isPlayer, averaged_settings)
+
+	for i in range(1, cars.size()):
+		cars[i].set_info(isPlayer, false, averaged_settings)
 
 func SetTarget(target: Node2D) -> void:
 	targetT = target
@@ -100,7 +100,6 @@ func _process(delta: float) -> void:
 func get_input() -> void:
 	input_vector.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	input_vector.y = Input.get_action_strength("Up") - Input.get_action_strength("Down")
-	
 
 
 func apply_input() -> void:
@@ -132,5 +131,11 @@ func  AddNewCar(NewCar:car)->void:
 	cars.append(NewCar.carcontroller)
 	NewCar.carcontroller.initalize()
 	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings)
+	recalculate_fleet_information()
+	pass
+	
+func  RemoveCar(CarToRemove:car_controller)->void:
+	cars.erase(CarToRemove)
+	CarToRemove.get_parent().queue_free()
 	recalculate_fleet_information()
 	pass
