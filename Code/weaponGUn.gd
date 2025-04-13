@@ -57,6 +57,9 @@ func fire():
 		return
 
 	var bullet = weapon.projectile_scene.instantiate()
+	if get_parent().is_in_group("Enemies"):
+		bullet.collision_mask = (1 << 0)
+		pass
 	bullet.global_position = muzzle_position.global_position
 	
 	# Set bullet rotation and direction properly

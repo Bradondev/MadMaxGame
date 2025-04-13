@@ -24,6 +24,7 @@ func _ready() -> void:
 		if child is Node2D:
 			fleet_positions.append(child)
 
+
 	# Assign starting positions
 	for i in range(min(cars.size(), fleet_positions.size())):
 		cars[i].initalize()
@@ -59,10 +60,12 @@ func recalculate_fleet_information() -> void:
 	averaged_settings = settingsNew.duplicate(true)
 		
 	if cars.size() > 0:
-		cars[0].set_info(isPlayer, isPlayer, averaged_settings)
+		cars[0].set_info(isPlayer, isPlayer, averaged_settings,self)
+		if isPlayer: cars[0].get_parent().Cam.enabled = true	
+		
 
 	for i in range(1, cars.size()):
-		cars[i].set_info(isPlayer, false, averaged_settings)
+		cars[i].set_info(isPlayer, false, averaged_settings,self)
 
 func SetTarget(target: Node2D) -> void:
 	targetT = target
@@ -73,7 +76,6 @@ func SetTarget(target: Node2D) -> void:
 	targetOffset =  Vector2(cos(angle), sin(angle)) * 30
 
 func _process(delta: float) -> void:
-	
 	if(isPlayer):
 		get_input()
 		apply_input()
@@ -130,7 +132,7 @@ func  AddNewCar(NewCar:car)->void:
 		get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
 	cars.append(NewCar.carcontroller)
 	NewCar.carcontroller.initalize()
-	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings)
+	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings,self)
 	recalculate_fleet_information()
 	pass
 	
@@ -138,4 +140,4 @@ func  RemoveCar(CarToRemove:car_controller)->void:
 	cars.erase(CarToRemove)
 	CarToRemove.get_parent().queue_free()
 	recalculate_fleet_information()
-	pass
+	if cars.size()== 0: queue_free()

@@ -3,6 +3,7 @@ class_name  car_controller
 
 
 @export var settings: VehicleSettings = VehicleSettings.new()
+@export var FleetManagerNode: FleetManager
 var averaged_settings: VehicleSettings
 var gun: Gun
 
@@ -21,10 +22,11 @@ func initalize() -> void:
 	settings = settings.duplicate(true)
 	gun = get_parent().get_node("Weapon")
 
-func set_info(player: bool, leader: bool, avg_settings: VehicleSettings) -> void:
+func set_info(player: bool, leader: bool, avg_settings: VehicleSettings, Fleet:FleetManager) -> void:
 	is_player_owned = player
 	is_leader = leader
 	averaged_settings = avg_settings
+	FleetManagerNode= Fleet
 	gun.setPlayer(player)
 	
 func set_gun_target(target_a : Node2D) -> void:

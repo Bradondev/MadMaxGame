@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_xltrp")
-damage = 10
+damage = 40
 fire_rate = 1.0
 projectile_scene = ExtResource("2_kuv70")
 TypeOfPart = "Weapon"

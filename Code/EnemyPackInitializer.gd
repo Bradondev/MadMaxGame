@@ -21,9 +21,11 @@ func _ready():
 			enemyBodyParts[rng.randi_range(0, enemyBodyParts.size() - 1)],
 			enemyWheelParts[rng.randi_range(0, enemyWheelParts.size() - 1)]
 			)
+		newCar.add_to_group("Enemies")
+		newCar.Cam.enabled = false
 		add_child(newCar)
 		newCar.global_position = global_position
 		var hitbox = newCar.get_node("HitBox")  # or get_child if you're certain of the index
 		hitbox.collision_layer = 1 << 1                     # Layer 2
-		hitbox.collision_mask = (1 << 0) | (1 << 1)         # Collides with layers 1 and 2
+		hitbox.collision_mask = (1 << 0)    # Collides with layers 1 and 2
 		fleetManager.AddNewCar(newCar)

@@ -46,3 +46,10 @@ func _process(delta):
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_area_entered(area:Area2D) -> void:
+	var parent: Node2D = area.get_parent()
+	if parent.has_method("TakeDamage"):
+		parent.TakeDamage(damage)
+		queue_free()

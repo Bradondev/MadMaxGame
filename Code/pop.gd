@@ -13,6 +13,7 @@ func _ready():
 	tween = create_tween()
 
 func pop():
+	if !tween: return
 	if tween.is_running():
 		tween.kill()
 
