@@ -8,6 +8,7 @@ class_name  car_part_obj
 @export var CarScene:PackedScene
 @export var ParticleEffect:PackedScene
 
+@export var soundeffect:Array[AudioStream]
 func _ready():
 	UpdateSprte()
 	
@@ -33,6 +34,7 @@ func PartChange()->void:
 		unitsAreas[0].global_rotation = 0.0
 		effect.emitting= true
 		effect.finished.connect(effect.queue_free)
+		SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 		print_debug("replace")
 func CreateNewCar(Part: CarPart, OtherPart: CarPart , weapon:CarPart = null) -> car:
 	var body_part: CarPart

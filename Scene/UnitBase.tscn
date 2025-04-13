@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4pddaaj23x27"]
+[gd_scene load_steps=21 format=3 uid="uid://b4pddaaj23x27"]
 
 [ext_resource type="Script" uid="uid://dptvebtp3t0kc" path="res://Code/Part_manager.gd" id="1_83dcw"]
 [ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_la4gh"]
@@ -9,11 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://dufgm7ft2rld8" path="res://Assests/CarParts/Waepons2.png" id="3_7flla"]
 [ext_resource type="Resource" uid="uid://fpex2gkird0d" path="res://Resources/Weapons/weapon1.tres" id="3_ix1j5"]
 [ext_resource type="Resource" uid="uid://bv2msb1tic0cf" path="res://Resources/Wheels/wheel1.tres" id="4_mgsx1"]
+[ext_resource type="AudioStream" uid="uid://cvde1hdcjqj4o" path="res://Assests/AudioEffects/hitsfx1.wav" id="5_7ndnw"]
 [ext_resource type="Script" uid="uid://bi0nchwrlb0bw" path="res://Code/car_contorller.gd" id="5_mgsx1"]
 [ext_resource type="Script" uid="uid://dgfpr2ywyvqsc" path="res://Code/weaponGUn.gd" id="6_7flla"]
 [ext_resource type="Resource" uid="uid://b2foqrn14khqx" path="res://Code/Default.tres" id="6_js2t5"]
+[ext_resource type="AudioStream" uid="uid://sp0mmqpnawvs" path="res://Assests/AudioEffects/hitsfx2.wav" id="6_rvf6p"]
+[ext_resource type="AudioStream" uid="uid://b07t6tgg57nh4" path="res://Assests/AudioEffects/hitsfx3.wav" id="7_mv8gn"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="7_qb5pb"]
 [ext_resource type="PackedScene" uid="uid://boa2w5l5p37ce" path="res://Scene/cartrail.tscn" id="14_qr411"]
+[ext_resource type="AudioStream" uid="uid://bvc23rjngxx3v" path="res://Assests/AudioEffects/shoot1.wav" id="16_mv8gn"]
+[ext_resource type="AudioStream" uid="uid://b7jbu7rgv53bi" path="res://Assests/AudioEffects/shoot2.wav" id="17_homw6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js2t5"]
 friction = 0.0
@@ -32,6 +37,7 @@ WheelIcon = NodePath("Wheel")
 WeaponIcon = NodePath("Weapon")
 carcontroller = NodePath("CarContorller")
 Cam = NodePath("Camera2D")
+soundeffect = Array[AudioStream]([ExtResource("5_7ndnw"), ExtResource("6_rvf6p"), ExtResource("7_mv8gn")])
 
 [node name="CarContorller" type="Node" parent="."]
 script = ExtResource("5_mgsx1")
@@ -69,6 +75,7 @@ script = ExtResource("6_7flla")
 weapon = ExtResource("7_qb5pb")
 muzzle_position = NodePath("Marker2D")
 gun_sprite = NodePath(".")
+soundeffect = Array[AudioStream]([ExtResource("16_mv8gn"), ExtResource("17_homw6")])
 
 [node name="Marker2D" type="Marker2D" parent="Weapon"]
 position = Vector2(0, 12)

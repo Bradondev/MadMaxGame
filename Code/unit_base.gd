@@ -10,7 +10,7 @@ class_name car
 @export var carcontroller:car_controller
 @export var Cam:Camera2D
 @export var PartScene:PackedScene = load("res://Scene/car_part.tscn")
-
+@export var soundeffect:Array[AudioStream]
 var accel_input: float = 0.0
 var steer_input: float = 0.0
 
@@ -57,6 +57,8 @@ func  TakeDamage(amount:float)->void:
 		carcontroller.FleetManagerNode.RemoveCar(carcontroller)
 		call_deferred("SpawnPartOnDeath")
 		call_deferred("queue_free")
+		if amount >5:
+			SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 
 	pass
 

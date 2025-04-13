@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ir2m2n5gvxcv"]
+[gd_scene load_steps=5 format=3 uid="uid://ir2m2n5gvxcv"]
 
 [ext_resource type="Script" uid="uid://dkwgk0oh62klx" path="res://Code/fleet_manger.gd" id="1_w2553"]
+[ext_resource type="AudioStream" uid="uid://drv1lqmomjfdb" path="res://Assests/AudioEffects/persondeath1.wav" id="2_2so0y"]
+[ext_resource type="AudioStream" uid="uid://buvvv474nk1yw" path="res://Assests/AudioEffects/persondeath2.wav" id="3_ij3du"]
+[ext_resource type="AudioStream" uid="uid://csxm5thnogcub" path="res://Assests/AudioEffects/persondeath3.wav" id="4_8une2"]
 
 [node name="FleetManger" type="Node" groups=["FleetManger"]]
 script = ExtResource("1_w2553")
+soundeffect = Array[AudioStream]([ExtResource("2_2so0y"), ExtResource("3_ij3du"), ExtResource("4_8une2")])

@@ -15,6 +15,7 @@ extends Area2D
 @export var landPrefab: PackedScene
 @export var hitEffect: PackedScene
 
+@export var soundeffect:Array[AudioStream]
 func setup(dmg: int, rot: float):
 	damage = dmg
 	rotation = rot
@@ -50,6 +51,8 @@ func _process(delta):
 			if(landPrefab != null):
 				var effect = hitEffect.instantiate()
 				get_tree().get_first_node_in_group("MainLevel").add_child(effect)
+				if soundeffect:
+					SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 				effect.global_position = global_position
 				
 			if(hitEffect != null):
@@ -69,6 +72,7 @@ func _on_timer_timeout() -> void:
 
 func _on_area_entered(area:Area2D) -> void:
 	var parent: Node2D = area.get_parent()
+	
 	if parent.has_method("TakeDamage"):
 		
 		if(landPrefab != null):
@@ -84,4 +88,6 @@ func _on_area_entered(area:Area2D) -> void:
 			effect.finished.connect(effect.queue_free)
 		
 		parent.TakeDamage(damage)
+		if soundeffect:
+			SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 		queue_free()

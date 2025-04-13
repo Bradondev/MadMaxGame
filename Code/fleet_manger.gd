@@ -13,7 +13,7 @@ var fleet_positions: Array[Node2D] = []
 
 @export var delay: float = 0.1
 @export var prediction_offset: float = 0.5
-
+@export var soundeffect: Array[AudioStream]
 var delay_timer: float = 0.0
 var input_vector: Vector2 = Vector2.ZERO
 var targetT: Node2D
@@ -143,7 +143,8 @@ func  RemoveCar(CarToRemove:car_controller)->void:
 	effect.global_position = CarToRemove.get_parent().global_position
 	effect.emitting= true
 	effect.finished.connect(effect.queue_free)
-	
+	if soundeffect:
+		SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 	cars.erase(CarToRemove)
 	CarToRemove.get_parent().queue_free()
 	recalculate_fleet_information()

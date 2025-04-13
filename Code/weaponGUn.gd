@@ -5,7 +5,7 @@ class_name Gun
 	get():return get_parent().WeaponPart
 @export var muzzle_position: Node2D
 @export var gun_sprite: Sprite2D
-
+@export var soundeffect: Array[AudioStream]
 var target: Node2D
 var isPlayerOperated: bool
 var can_fire := true
@@ -56,7 +56,8 @@ func _process(delta):
 func fire():
 	if weapon.projectile_scene == null:
 		return
-
+	if weapon.fire_rate< 40: 
+		SodaAudioManager.play_sfx(soundeffect.pick_random().resource_path,.5)
 	var bullet = weapon.projectile_scene.instantiate()
 	if get_parent().is_in_group("Enemies"):
 		bullet.collision_mask = (1 << 0)

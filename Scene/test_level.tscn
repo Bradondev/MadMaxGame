@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="12_14iix"]
 [ext_resource type="Script" path="res://Code/enemy_detection_manager.gd" id="15_5oafe"]
 [ext_resource type="Resource" uid="uid://rjn1mmxwblo1" path="res://Resources/Bodys/body3.tres" id="17_n8kvh"]
-[ext_resource type="Resource" path="res://Resources/Bodys/body4.tres" id="18_2vgmh"]
+[ext_resource type="Resource" uid="uid://c5cpbl2coeyos" path="res://Resources/Bodys/body4.tres" id="18_2vgmh"]
 [ext_resource type="Resource" uid="uid://dp30a3lpucijo" path="res://Resources/Weapons/weapon3.tres" id="19_cjs4r"]
 [ext_resource type="Texture2D" uid="uid://d2jeaf5wxlxao" path="res://Assests/Metalbits.png" id="20_8pbpe"]
 [ext_resource type="Texture2D" uid="uid://c1dxxq1kifiio" path="res://Assests/metalbitt.png" id="21_x7xu7"]
