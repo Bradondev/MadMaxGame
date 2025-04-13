@@ -41,3 +41,9 @@ metadata/_edit_lock_ = true
 
 [node name="debug" type="Node" parent="."]
 script = ExtResource("2_rfu1n")
+
+[editable path="SubViewportContainer/SubViewport/TestLevel"]
+[editable path="SubViewportContainer/SubViewport/TestLevel/CarUnit"]
+[editable path="SubViewportContainer/SubViewport/TestLevel/CarUnit2"]
+[editable path="SubViewportContainer/SubViewport/TestLevel/CarUnit3"]
+[editable path="SubViewportContainer/SubViewport/TestLevel/CarUnit4"]

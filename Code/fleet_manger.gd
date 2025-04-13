@@ -140,7 +140,7 @@ func  AddNewCar(NewCar:car)->void:
 func  RemoveCar(CarToRemove:car_controller)->void:
 	var effect :GPUParticles2D= explosionEffec.instantiate()
 	get_tree().get_first_node_in_group("MainLevel").add_child(effect)
-	effect.global_position = CarToRemove.global_position
+	effect.global_position = CarToRemove.get_parent().global_position
 	effect.emitting= true
 	effect.finished.connect(effect.queue_free)
 	

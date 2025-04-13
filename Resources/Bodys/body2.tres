@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Body" load_steps=3 format=3 uid="uid://dk2wsyh72j1j5"]
 
-[ext_resource type="Texture2D" uid="uid://dug3evnprx3b2" path="res://Assests/CarParts/Body.png" id="1_iesut"]
+[ext_resource type="Texture2D" uid="uid://w3uic2trfhkv" path="res://Assests/CarParts/car3/Body.png" id="1_iesut"]
 [ext_resource type="Script" uid="uid://byrnnkgvdi4fg" path="res://Code/ResourceCode/Body.gd" id="2_6jki8"]
 
 [resource]

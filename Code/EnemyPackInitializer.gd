@@ -11,6 +11,7 @@ extends Node2D
 func _ready():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
+	add_to_group("EnemyFleet")
 
 	var enemies = rng.randi_range(enemiesMinMax.x, enemiesMinMax.y)
 	for i in enemies:
