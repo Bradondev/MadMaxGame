@@ -108,6 +108,7 @@ func align_enemy_fleet() -> void:
 	for i in range(cars.size()):
 		var target_index = i % playerFleet.cars.size()
 		cars[i].take_position(playerFleet.cars[target_index].get_parent().global_position, 0)
+		cars[i].set_gun_target(playerFleet.cars[target_index].get_parent())
 
 func align_fleet() -> void:
 	if cars.size() == 0 or fleet_positions.size() == 0:
@@ -126,7 +127,7 @@ func  AddNewCar(NewCar:car)->void:
 		NewCar.global_position = get_tree().get_first_node_in_group("MainLevel").get_global_mouse_position()
 		get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
 	cars.append(NewCar.carcontroller)
-	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings)
 	NewCar.carcontroller.initalize()
+	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings)
 	recalculate_fleet_information()
 	pass

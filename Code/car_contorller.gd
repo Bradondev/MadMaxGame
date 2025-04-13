@@ -4,6 +4,7 @@ class_name  car_controller
 
 @export var settings: VehicleSettings = VehicleSettings.new()
 var averaged_settings: VehicleSettings
+var gun: Gun
 
 var accel_input: float = 0.0
 var steer_input: float = 0.0
@@ -18,12 +19,16 @@ var is_player_owned: bool = false
 
 func initalize() -> void:
 	settings = settings.duplicate(true)
-
+	gun = get_parent().get_node("Weapon")
 
 func set_info(player: bool, leader: bool, avg_settings: VehicleSettings) -> void:
 	is_player_owned = player
 	is_leader = leader
 	averaged_settings = avg_settings
+	gun.setPlayer(player)
+	
+func set_gun_target(target_a : Node2D) -> void:
+	gun.setTarget(target_a)
 
 
 func take_input(accel: float, steer: float) -> void:

@@ -5,7 +5,15 @@ class_name Gun
 @export var muzzle_position: Node2D
 @export var gun_sprite: Sprite2D
 
+var target: Node2D
+var isPlayerOperated: bool
 var can_fire := true
+
+func setPlayer(isPlayer: bool) -> void:
+	isPlayerOperated = isPlayer
+
+func setTarget(targetT: Node2D) -> void:
+	target = targetT
 
 func _ready():
 	if weapon == null:
@@ -15,20 +23,32 @@ func _ready():
 func _process(delta):
 	if !weapon:
 		return
-
-	# Rotate parent to face the mouse
-	var mouse_pos = get_global_mouse_position()
-	var direction = (mouse_pos - global_position).normalized()
-	var target_angle = direction.angle()
-	global_rotation = target_angle - deg_to_rad(90)
+	
+	if(isPlayerOperated):
+		# Rotate parent to face the mouse
+		var mouse_pos = get_global_mouse_position()
+		var direction = (mouse_pos - global_position).normalized()
+		var target_angle = direction.angle()
+		global_rotation = target_angle - deg_to_rad(90)
+			
+			
+		# Fire on input
+		if Input.is_action_pressed("fire") and can_fire:
+			fire()
+			can_fire = false
+			await get_tree().create_timer(1.0 / weapon.fire_rate).timeout
+			can_fire = true
+	elif(target != null):
+		var mouse_pos = target.global_position
+		var direction = (mouse_pos - global_position).normalized()
+		var target_angle = direction.angle()
+		global_rotation = target_angle - deg_to_rad(90)
 		
-		
-	# Fire on input
-	if Input.is_action_pressed("fire") and can_fire:
-		fire()
-		can_fire = false
-		await get_tree().create_timer(1.0 / weapon.fire_rate).timeout
-		can_fire = true
+		if can_fire:
+			fire()
+			can_fire = false
+			await get_tree().create_timer(1.0 / weapon.fire_rate).timeout
+			can_fire = true
 
 
 
