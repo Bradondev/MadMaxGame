@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Body" load_steps=3 format=3 uid="uid://lb6t1inqtv03"]
+
+[ext_resource type="Texture2D" uid="uid://be8yy0wl27457" path="res://Assests/CarParts/Body2.png" id="1_7t2d4"]
+[ext_resource type="Script" uid="uid://byrnnkgvdi4fg" path="res://Code/ResourceCode/Body.gd" id="1_42ees"]
+
+[resource]
+script = ExtResource("1_42ees")
+Health = 100.0
+part_name = "Unnamed Part"
+icon = ExtResource("1_7t2d4")
+metadata/_custom_type_script = "uid://byrnnkgvdi4fg"

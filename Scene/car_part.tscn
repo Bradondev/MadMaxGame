@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://jucjm4646tn5"]
+
+[ext_resource type="Script" uid="uid://be4yv2sopqy7f" path="res://car_partObject.gd" id="1_huo5s"]
+[ext_resource type="Resource" uid="uid://lb6t1inqtv03" path="res://Resources/Bodys/body1.tres" id="2_0hvxs"]
+[ext_resource type="Script" uid="uid://dm1r7k4yaha83" path="res://Code/DragAndDrop.gd" id="2_afprw"]
+[ext_resource type="Script" uid="uid://cd2y15jn81ln3" path="res://Code/Outline_HighLigther.gd" id="3_0hvxs"]
+[ext_resource type="Shader" uid="uid://ddbncar8u1knj" path="res://Code/OutLine.gdshader" id="4_afprw"]
+[ext_resource type="Texture2D" uid="uid://be8yy0wl27457" path="res://Assests/CarParts/Body2.png" id="4_pecp6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bd1n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hvxs"]
+shader = ExtResource("4_afprw")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = false
+
+[node name="CarPart" type="Node2D" node_paths=PackedStringArray("icon", "DropHitBox")]
+script = ExtResource("1_huo5s")
+part = ExtResource("2_0hvxs")
+icon = NodePath("Part")
+DropHitBox = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2bd1n")
+
+[node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_afprw")
+target = NodePath("../Area2D")
+
+[node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("3_0hvxs")
+visuals = [NodePath("../Part")]
+outline_color = Color(1, 1, 1, 1)
+outline_thickness = 2
+
+[node name="Part" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0hvxs")
+texture = ExtResource("4_pecp6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="drag_started" from="DragAndDrop" to="OutlineHighlighter" method="highlight"]
+[connection signal="dropped" from="DragAndDrop" to="." method="PartChange" unbinds=1]
+[connection signal="dropped" from="DragAndDrop" to="OutlineHighlighter" method="clear_highlight" unbinds=1]

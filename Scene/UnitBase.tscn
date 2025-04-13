@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4pddaaj23x27"]
+
+[ext_resource type="Script" uid="uid://dptvebtp3t0kc" path="res://Code/Part_manager.gd" id="1_83dcw"]
+[ext_resource type="Texture2D" uid="uid://pso2j08njhan" path="res://Assests/CarParts/wheels2.png" id="1_la4gh"]
+[ext_resource type="Texture2D" uid="uid://bf6atmmn1jxq6" path="res://Assests/CarBase.png" id="1_qeba4"]
+[ext_resource type="Script" uid="uid://7rwjdspg4wu3" path="res://Code/unit_base.gd" id="1_w5bri"]
+[ext_resource type="Texture2D" uid="uid://be8yy0wl27457" path="res://Assests/CarParts/Body2.png" id="2_83dcw"]
+[ext_resource type="Texture2D" uid="uid://dufgm7ft2rld8" path="res://Assests/CarParts/Waepons2.png" id="3_7flla"]
+[ext_resource type="Script" uid="uid://dgfpr2ywyvqsc" path="res://Code/weaponGUn.gd" id="6_7flla"]
+[ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/TestWeapon.tres" id="7_qb5pb"]
+
+[node name="CarUnit" type="CharacterBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon")]
+script = ExtResource("1_w5bri")
+BodyIcon = NodePath("Body")
+WheelIcon = NodePath("Wheel")
+WeaponIcon = NodePath("Weapon")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
+
+[node name="PartManager" type="Node" parent="." node_paths=PackedStringArray("WheelSprite", "BodySprite", "WeaponSprite")]
+script = ExtResource("1_83dcw")
+WheelSprite = NodePath("../Wheel")
+BodySprite = NodePath("../Body")
+WeaponSprite = NodePath("../Weapon")
+
+[node name="Wheel" type="Sprite2D" parent="."]
+texture = ExtResource("1_la4gh")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_83dcw")
+
+[node name="Weapon" type="Sprite2D" parent="." node_paths=PackedStringArray("muzzle_position", "gun_sprite")]
+position = Vector2(0, 6)
+texture = ExtResource("3_7flla")
+offset = Vector2(0, -7)
+script = ExtResource("6_7flla")
+weapon = ExtResource("7_qb5pb")
+muzzle_position = NodePath("Marker2D")
+gun_sprite = NodePath(".")
+
+[node name="Marker2D" type="Marker2D" parent="Weapon"]
+position = Vector2(0, 12)
+
+[node name="temp" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_qeba4")
+
+[node name="UpgradeHitBox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UpgradeHitBox"]
+polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
+
+[connection signal="input_event" from="UpgradeHitBox" to="." method="_on_upgrade_hit_box_input_event"]
