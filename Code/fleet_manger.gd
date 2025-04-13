@@ -1,7 +1,7 @@
 extends Node
 
 @export var cars: Array[car_controller] = []
-@export var averaged_settings: VehicleSettings = VehicleSettings.new()
+@export var averaged_settings: VehicleSettings
 
 @export var fleet_position_holder: Node2D
 var fleet_positions: Array[Node2D] = []
@@ -21,8 +21,10 @@ func _ready() -> void:
 
 	# Assign starting positions
 	for i in range(min(cars.size(), fleet_positions.size())):
+		cars[i].initalize()
 		cars[i].get_parent().global_position = fleet_positions[i].global_position
 
+	
 	recalculate_fleet_information()
 
 	# Set leader/follower info
@@ -34,19 +36,26 @@ func _ready() -> void:
 
 
 func recalculate_fleet_information() -> void:
-	averaged_settings.engine_power = 0
-	averaged_settings.max_speed = 0
-	averaged_settings.steer_speed = 0
+	
+	var settingsNew = averaged_settings.duplicate(true)
+	
+	settingsNew.engine_power = 0
+	settingsNew.max_speed = 0
+	settingsNew.steer_speed = 0
 
 	for car in cars:
-		averaged_settings.engine_power += car.settings.engine_power
-		averaged_settings.max_speed += car.settings.max_speed
-		averaged_settings.steer_speed += car.settings.steer_speed
+		settingsNew.engine_power += car.settings.engine_power
+		settingsNew.max_speed += car.settings.max_speed
+		settingsNew.steer_speed += car.settings.steer_speed
 
 	if cars.size() > 0:
-		averaged_settings.engine_power /= cars.size()
-		averaged_settings.max_speed /= cars.size()
-		averaged_settings.steer_speed /= cars.size()
+		settingsNew.engine_power /= cars.size()
+		settingsNew.max_speed /= cars.size()
+		settingsNew.steer_speed /= cars.size()
+	
+	averaged_settings = settingsNew.duplicate(true)
+	print_debug(averaged_settings.engine_power)
+		
 
 
 func _process(delta: float) -> void:

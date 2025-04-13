@@ -8,8 +8,6 @@ class_name car
 @export var  WheelIcon: Sprite2D
 @export var  WeaponIcon: Sprite2D
 @export var carcontroller:car_controller
-@export var settings: VehicleSettings = VehicleSettings.new()
-var averaged_settings: VehicleSettings
 
 var accel_input: float = 0.0
 var steer_input: float = 0.0

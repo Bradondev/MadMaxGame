@@ -29,7 +29,6 @@ BodyIcon = NodePath("Body")
 WheelIcon = NodePath("Wheel")
 WeaponIcon = NodePath("Weapon")
 carcontroller = NodePath("CarContorller")
-settings = ExtResource("6_js2t5")
 
 [node name="CarContorller" type="Node" parent="."]
 script = ExtResource("5_mgsx1")
