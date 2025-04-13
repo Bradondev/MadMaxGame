@@ -1,1 +1,88 @@
-extends Node
+extends RigidBody2D
+
+class_name car_controller
+
+@export var settings: VehicleSettings = VehicleSettings.new()
+var averaged_settings: VehicleSettings
+
+var accel_input: float = 0.0
+var steer_input: float = 0.0
+
+var current_steer: float = 0.0
+
+var target_position: Vector2
+var target_angle: float = 0.0
+
+var is_leader: bool = false
+
+func _ready():
+	averaged_settings = settings.duplicate()
+
+
+func set_info(leader: bool, avg_settings: VehicleSettings) -> void:
+	is_leader = leader
+	averaged_settings = avg_settings
+
+
+func take_input(accel: float, steer: float) -> void:
+	accel_input = accel
+	steer_input = steer
+
+
+func take_position(pos: Vector2, angle: float) -> void:
+	target_position = pos
+	target_angle = angle
+
+
+func get_future_position(future_time: float) -> Vector2:
+	return global_position + linear_velocity * future_time
+
+
+func _process(delta: float) -> void:
+	if not is_leader:
+		var direction_to_target = (target_position - global_position).normalized()
+		var angle_to_target = rad2deg(direction_to_target.angle_to(transform.y))
+		var forward_dot = transform.y.dot(direction_to_target)
+
+		steer_input = -clamp(angle_to_target, -6.0, 6.0)
+		var normalized_forward_dot = inverse_lerp(1.0, -1.0, forward_dot)
+		steer_input *= normalized_forward_dot
+
+		var distance = global_position.distance_to(target_position)
+		if distance > 1.5:
+			accel_input = 1.0
+		else:
+			accel_input = 0.0
+			steer_input = 0.0
+
+		accel_input *= inverse_lerp(-3.0, 1.0, forward_dot)
+
+
+func _physics_process(delta: float) -> void:
+	var forward = transform.y
+	var current_speed = linear_velocity.dot(forward)
+	var normalized_speed = clamp(abs(linear_velocity.length()) / averaged_settings.max_speed, 0.0, 1.0)
+
+	# Acceleration
+	if accel_input != 0.0 and abs(current_speed) < averaged_settings.max_speed:
+		var available_torque = averaged_settings.power_curve.sample(normalized_speed) * accel_input
+		apply_force(forward * available_torque * averaged_settings.engine_power)
+
+	# Braking
+	if accel_input == 0.0:
+		linear_velocity = linear_velocity.lerp(Vector2.ZERO, averaged_settings.brake_friction * delta)
+
+	# Drift / grip
+	var lateral_vel = transform.x * linear_velocity.dot(transform.x)
+	var forward_vel = transform.y * linear_velocity.dot(transform.y)
+
+	var drift = Input.is_action_pressed("drift") ? averaged_settings.drift_factor : averaged_settings.grip_factor
+	linear_velocity = forward_vel + lateral_vel * drift
+
+	# Steering
+	var direction_multiplier = current_speed >= 0.0 ? -1.0 : 1.0
+	var available_steering = Input.is_action_pressed("drift") ? 1.0 : averaged_settings.steer_curve.sample(normalized_speed)
+	var steer_amount = steer_input * averaged_settings.steer_speed * available_steering * normalized_speed
+
+	current_steer = lerp(current_steer, steer_amount, 5 * delta)
+	rotation += current_steer * direction_multiplier * delta
