@@ -14,12 +14,14 @@ var target_position: Vector2
 var target_angle: float = 0.0
 
 var is_leader: bool = false
+var is_player_owned: bool = false
 
 func initalize() -> void:
 	settings = settings.duplicate(true)
 
 
-func set_info(leader: bool, avg_settings: VehicleSettings) -> void:
+func set_info(player: bool, leader: bool, avg_settings: VehicleSettings) -> void:
+	is_player_owned = player
 	is_leader = leader
 	averaged_settings = avg_settings
 

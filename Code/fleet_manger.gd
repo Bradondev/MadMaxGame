@@ -2,6 +2,7 @@ extends Node
 
 class_name FleetManager
 
+@export var playerFleet: FleetManager
 @export var cars: Array[car_controller] = []
 @export var averaged_settings: VehicleSettings
 @export var isPlayer: bool
@@ -32,13 +33,15 @@ func _ready() -> void:
 
 	# Set leader/follower info
 	if cars.size() > 0:
-		cars[0].set_info(isPlayer, averaged_settings)
+		cars[0].set_info(isPlayer, isPlayer, averaged_settings)
 
 	for i in range(1, cars.size()):
-		cars[i].set_info(false, averaged_settings)
+		cars[i].set_info(isPlayer, false, averaged_settings)
 		
 	align_fleet()
 
+func get_random_car() -> car_controller:
+	return cars[randi_range(0, cars.size() - 1)]
 
 func recalculate_fleet_information() -> void:
 	
@@ -72,16 +75,23 @@ func _process(delta: float) -> void:
 		get_input()
 		apply_input()
 	else:
-		cars[0].take_position(get_child(0).global_position, 0)
-		if(targetT !=  null):
-			cars[0].take_position(targetT.global_position + targetOffset, 0)
+		if(targetT ==  null):
+			cars[0].take_position(get_child(0).global_position, 0)
+		#if(targetT !=  null):
+			#cars[0].take_position(targetT.global_position + targetOffset, 0)
 		
 	delay_timer -= delta
 	if delay_timer < 0:
 		delay_timer = delay
-		align_fleet()
-		var angle = randf() * TAU  # TAU is 2 * PI
-		targetOffset =  Vector2(cos(angle), sin(angle)) * 30
+		if(isPlayer):
+			align_fleet()
+		else:
+			if(targetT !=  null):
+				align_enemy_fleet()
+			else:
+				align_fleet()
+			var angle = randf() * TAU  # TAU is 2 * PI
+			targetOffset =  Vector2(cos(angle), sin(angle)) * 30
 
 
 func get_input() -> void:
@@ -94,6 +104,10 @@ func apply_input() -> void:
 	if cars.size() > 0:
 		cars[0].take_input(input_vector.y, input_vector.x)
 
+func align_enemy_fleet() -> void:
+	for i in range(cars.size()):
+		var target_index = i % playerFleet.cars.size()
+		cars[i].take_position(playerFleet.cars[target_index].get_parent().global_position, 0)
 
 func align_fleet() -> void:
 	if cars.size() == 0 or fleet_positions.size() == 0:
@@ -112,7 +126,7 @@ func  AddNewCar(NewCar:car)->void:
 		NewCar.global_position = get_tree().get_first_node_in_group("MainLevel").get_global_mouse_position()
 		get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
 	cars.append(NewCar.carcontroller)
-	NewCar.carcontroller.set_info(false, averaged_settings)
+	NewCar.carcontroller.set_info(isPlayer, false, averaged_settings)
 	NewCar.carcontroller.initalize()
 	recalculate_fleet_information()
 	pass
