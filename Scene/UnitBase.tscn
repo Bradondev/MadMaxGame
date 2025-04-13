@@ -15,11 +15,12 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js2t5"]
 friction = 0.0
-bounce = 0.4
+bounce = 1.0
 
 [node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon")]
 physics_material_override = SubResource("PhysicsMaterial_js2t5")
 gravity_scale = 0.0
+angular_damp = 0.1
 script = ExtResource("1_w5bri")
 BodyPart = ExtResource("2_cl1je")
 WeaponPart = ExtResource("7_qb5pb")
@@ -39,7 +40,7 @@ settings = ExtResource("6_js2t5")
 polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)
+polygon = PackedVector2Array(-3, -9, -6, 0, -6, 11, 6, 11, 6, 0, 4, -9)
 
 [node name="PartManager" type="Node" parent="." node_paths=PackedStringArray("WheelSprite", "BodySprite", "WeaponSprite")]
 script = ExtResource("1_83dcw")

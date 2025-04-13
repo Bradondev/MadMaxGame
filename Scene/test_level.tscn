@@ -12,7 +12,7 @@
 [node name="TestLevel" type="Node2D"]
 
 [node name="FleetManger" parent="." node_paths=PackedStringArray("cars", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
-cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorller"), NodePath("../CarUnit3/CarContorller")]
+cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorller"), NodePath("../CarUnit3/CarContorller"), NodePath("../CarUnit4/CarContorller"), NodePath("../CarUnit5/CarContorller")]
 averaged_settings = ExtResource("2_ifsfr")
 fleet_position_holder = NodePath("../FleetPositionManger")
 prediction_offset = 0.6
@@ -39,6 +39,12 @@ position = Vector2(288, 204)
 [node name="CarUnit3" parent="." instance=ExtResource("2_kicsh")]
 position = Vector2(399, 222)
 
+[node name="CarUnit4" parent="." instance=ExtResource("2_kicsh")]
+position = Vector2(198, 283)
+
+[node name="CarUnit5" parent="." instance=ExtResource("2_kicsh")]
+position = Vector2(399, 301)
+
 [node name="CarPart" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
 
@@ -53,3 +59,5 @@ part = ExtResource("5_7gbo7")
 [editable path="CarUnit"]
 [editable path="CarUnit2"]
 [editable path="CarUnit3"]
+[editable path="CarUnit4"]
+[editable path="CarUnit5"]
