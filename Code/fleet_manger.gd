@@ -1,5 +1,7 @@
 extends Node
 
+class_name FleetManager
+
 @export var cars: Array[car_controller] = []
 @export var averaged_settings: VehicleSettings
 @export var isPlayer: bool
@@ -25,7 +27,6 @@ func _ready() -> void:
 	for i in range(min(cars.size(), fleet_positions.size())):
 		cars[i].initalize()
 		cars[i].get_parent().global_position = fleet_positions[i].global_position
-
 	
 	recalculate_fleet_information()
 
@@ -58,13 +59,12 @@ func recalculate_fleet_information() -> void:
 		settingsNew.steer_speed /= cars.size()
 	
 	averaged_settings = settingsNew.duplicate(true)
-	print_debug(averaged_settings.engine_power)
 		
 
 func SetTarget(target: Node2D) -> void:
 	targetT = target
 	var angle = randf() * TAU  # TAU is 2 * PI
-	targetOffset =  Vector2(cos(angle), sin(angle)) * 40
+	targetOffset =  Vector2(cos(angle), sin(angle)) * 30
 
 func _process(delta: float) -> void:
 	
@@ -72,6 +72,7 @@ func _process(delta: float) -> void:
 		get_input()
 		apply_input()
 	else:
+		cars[0].take_position(get_child(0).global_position, 0)
 		if(targetT !=  null):
 			cars[0].take_position(targetT.global_position + targetOffset, 0)
 		
@@ -79,6 +80,8 @@ func _process(delta: float) -> void:
 	if delay_timer < 0:
 		delay_timer = delay
 		align_fleet()
+		var angle = randf() * TAU  # TAU is 2 * PI
+		targetOffset =  Vector2(cos(angle), sin(angle)) * 30
 
 
 func get_input() -> void:
@@ -105,8 +108,9 @@ func align_fleet() -> void:
 			cars[i].take_position(fleet_positions[i].global_position, leader.get_parent().rotation_degrees)
 			
 func  AddNewCar(NewCar:car)->void:
-	NewCar.global_position = get_tree().get_first_node_in_group("MainLevel").get_global_mouse_position()
-	get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
+	if(isPlayer):
+		NewCar.global_position = get_tree().get_first_node_in_group("MainLevel").get_global_mouse_position()
+		get_tree().get_first_node_in_group("MainLevel").add_child(NewCar)
 	cars.append(NewCar.carcontroller)
 	NewCar.carcontroller.set_info(false, averaged_settings)
 	NewCar.carcontroller.initalize()

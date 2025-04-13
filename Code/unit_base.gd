@@ -27,7 +27,7 @@ func UpdateSprites() -> void:
 		WheelIcon.texture = WheelPart.icon
 	if WeaponPart != null and WeaponIcon != null:
 		WeaponIcon.texture = WeaponPart.icon
-func ReplacePart(Part: CarPart, GameObjectPart:GameObject) -> void:
+func ReplacePart(Part: CarPart, GameObjectPart:car_part_obj) -> void:
 
 	match Part.TypeOfPart:
 		"Body":

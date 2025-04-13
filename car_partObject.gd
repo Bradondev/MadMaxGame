@@ -1,5 +1,5 @@
 extends Node2D
-class_name  GameObject
+class_name  car_part_obj
 
 @export var part:CarPart
 @export var icon: Sprite2D

@@ -35,6 +35,7 @@ script = ExtResource("5_mgsx1")
 settings = ExtResource("6_js2t5")
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
 polygon = PackedVector2Array(-3, -9, -10, -4, -6, 0, -6, 11, 6, 11, 6, 0, 10, -3, 4, -9)

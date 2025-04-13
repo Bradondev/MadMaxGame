@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxxsq8nfxacyp"]
+[gd_scene load_steps=19 format=3 uid="uid://dxxsq8nfxacyp"]
 
 [ext_resource type="Texture2D" uid="uid://cxv2wof2ulqts" path="res://Assests/Bg.png" id="1_5jhp1"]
 [ext_resource type="PackedScene" uid="uid://ir2m2n5gvxcv" path="res://Scene/fleet_manger.tscn" id="1_ifsfr"]
@@ -9,6 +9,16 @@
 [ext_resource type="Resource" uid="uid://fpex2gkird0d" path="res://Resources/Weapons/weapon1.tres" id="4_1tbln"]
 [ext_resource type="Script" uid="uid://kq30lu2o3dt5" path="res://Code/EnemyPackInitializer.gd" id="4_2ue6q"]
 [ext_resource type="Resource" uid="uid://dpwb1b65l2rjq" path="res://Resources/Wheels/wheel2.tres" id="5_7gbo7"]
+[ext_resource type="Script" uid="uid://byrnnkgvdi4fg" path="res://Code/ResourceCode/Body.gd" id="5_7pb6t"]
+[ext_resource type="Resource" uid="uid://lb6t1inqtv03" path="res://Resources/Bodys/body1.tres" id="6_5oafe"]
+[ext_resource type="Resource" uid="uid://dk2wsyh72j1j5" path="res://Resources/Bodys/body2.tres" id="7_edqjk"]
+[ext_resource type="Script" uid="uid://kwynu6u1kdrb" path="res://Code/ResourceCode/Wheels.gd" id="8_cjs4r"]
+[ext_resource type="Resource" uid="uid://bv2msb1tic0cf" path="res://Resources/Wheels/wheel1.tres" id="9_6elmv"]
+[ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="11_ab3th"]
+[ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="12_14iix"]
+[ext_resource type="Script" uid="uid://boe33gck6h3a4" path="res://Code/enemy_detection_manager.gd" id="15_5oafe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pb6t"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -17,19 +27,33 @@ cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorlle
 averaged_settings = ExtResource("2_ifsfr")
 isPlayer = true
 fleet_position_holder = NodePath("../FleetPositionManger")
-prediction_offset = 0.6
 
-[node name="FleetManger2" parent="." node_paths=PackedStringArray("cars", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
-cars = [NodePath("../CarUnit/CarContorller"), NodePath("../CarUnit2/CarContorller"), NodePath("../CarUnit3/CarContorller"), NodePath("../CarUnit4/CarContorller")]
+[node name="EnemyFleet" parent="." node_paths=PackedStringArray("fleet_position_holder") instance=ExtResource("1_ifsfr")]
 averaged_settings = ExtResource("2_ifsfr")
-fleet_position_holder = NodePath("../FleetPositionManger")
-prediction_offset = 0.6
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
 
-[node name="FleetPositionManger2" parent="FleetManger2" instance=ExtResource("3_thy57")]
-position = Vector2(333, 162)
-
-[node name="Node" type="Node" parent="FleetManger2"]
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(-478, 0)
 script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet/FleetInitalizer/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
@@ -77,6 +101,9 @@ part = ExtResource("4_1tbln")
 [node name="CarPart3" parent="." instance=ExtResource("3_si1yy")]
 position = Vector2(384, 169)
 part = ExtResource("5_7gbo7")
+
+[connection signal="body_entered" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
 
 [editable path="CarUnit"]
 [editable path="CarUnit2"]
