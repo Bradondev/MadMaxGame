@@ -63,27 +63,28 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var forward = get_parent().transform.y
 	var current_speed = get_parent().linear_velocity.dot(forward)
-	var normalized_speed = clamp(abs(get_parent().linear_velocity.length()) / 10, 0.0, 1.0)
+	var normalized_speed = get_parent().linear_velocity.length() / 100
 
 	# Acceleration
-	if accel_input != 0.0 and abs(current_speed) < 10:
+	if accel_input != 0.0 and abs(current_speed) < 100:
 		var available_torque = accel_input
-		get_parent().apply_force(forward  * available_torque* 40)
+		get_parent().apply_force(-forward  * available_torque* 400)
 		
 	
 	# Braking
 	if accel_input == 0.0:
-		get_parent().linear_velocity = get_parent().linear_velocity.lerp(Vector2.ZERO, 5 )
+		get_parent().linear_velocity = get_parent().linear_velocity.lerp(Vector2.ZERO, .2 )
 
 	# Drift / grip
 	var lateral_vel = get_parent().transform.x * get_parent().linear_velocity.dot(get_parent().transform.x)
 	var forward_vel = get_parent().transform.y * get_parent().linear_velocity.dot(get_parent().transform.y)
 	var drift =   averaged_settings.drift_factor if Input.is_action_pressed("drift") else  averaged_settings.grip_factor
-	get_parent().linear_velocity = forward_vel #+ lateral_vel# * drift
+	get_parent().linear_velocity = forward_vel + lateral_vel * drift
 
 	# Steering
 	var direction_multiplier = -1.0 if current_speed >= 0.0 else  1.0
 	var available_steering =  1.0 if Input.is_action_pressed("drift") else  averaged_settings.steer_curve.sample(normalized_speed)
-	var steer_amount = steer_input #* averaged_settings.steer_speed #* available_steering * normalized_speed
-	current_steer = lerp(current_steer, steer_amount, 10 *delta)
-	get_parent().rotation = current_steer #* direction_multiplier * delta
+	var steer_amount = steer_input * 12 * available_steering * normalized_speed
+	current_steer = lerp(current_steer, steer_amount, 5 * delta)
+	print_debug(current_steer, steer_amount)
+	get_parent().rotation = get_parent().rotation+ current_steer * direction_multiplier 
