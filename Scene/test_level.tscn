@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxxsq8nfxacyp"]
+[gd_scene load_steps=27 format=3 uid="uid://dxxsq8nfxacyp"]
 
 [ext_resource type="Texture2D" uid="uid://cxv2wof2ulqts" path="res://Assests/Bg.png" id="1_5jhp1"]
 [ext_resource type="PackedScene" uid="uid://ir2m2n5gvxcv" path="res://Scene/fleet_manger.tscn" id="1_ifsfr"]
@@ -17,8 +17,14 @@
 [ext_resource type="Resource" uid="uid://bv2msb1tic0cf" path="res://Resources/Wheels/wheel1.tres" id="9_6elmv"]
 [ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="11_ab3th"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="12_14iix"]
-[ext_resource type="Script" uid="uid://boe33gck6h3a4" path="res://Code/enemy_detection_manager.gd" id="15_5oafe"]
+[ext_resource type="Script" path="res://Code/enemy_detection_manager.gd" id="15_5oafe"]
+[ext_resource type="Resource" uid="uid://rjn1mmxwblo1" path="res://Resources/Bodys/body3.tres" id="17_n8kvh"]
+[ext_resource type="Resource" uid="uid://c5cpbl2coeyos" path="res://Resources/Bodys/body4.tres" id="18_2vgmh"]
 [ext_resource type="Resource" uid="uid://dp30a3lpucijo" path="res://Resources/Weapons/weapon3.tres" id="19_cjs4r"]
+[ext_resource type="Texture2D" uid="uid://d2jeaf5wxlxao" path="res://Assests/Metalbits.png" id="20_8pbpe"]
+[ext_resource type="Texture2D" uid="uid://c1dxxq1kifiio" path="res://Assests/metalbitt.png" id="21_x7xu7"]
+[ext_resource type="Texture2D" uid="uid://do04kmipqft4c" path="res://Assests/waterTower.png" id="22_n8kvh"]
+[ext_resource type="Texture2D" uid="uid://cppbtiu16ivs5" path="res://Assests/wire.png" id="23_2vgmh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7pb6t"]
 
@@ -57,6 +63,64 @@ shape = SubResource("CircleShape2D_7pb6t")
 [node name="FleetPositionMange" parent="EnemyFleet/FleetInitalizer" instance=ExtResource("3_thy57")]
 
 [node name="EnemyDetectionManager" type="Node" parent="EnemyFleet/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
+
+[node name="EnemyFleet2" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet2" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(1038, -395)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk"), ExtResource("17_n8kvh"), ExtResource("18_2vgmh")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet2/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet2/FleetInitalizer/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet2/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet2/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
+
+[node name="EnemyFleet3" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet3" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(961, 911)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet3/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet3/FleetInitalizer/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet3/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet3/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
 script = ExtResource("15_5oafe")
 fleetManager = NodePath("../..")
 
@@ -166,8 +230,101 @@ part = ExtResource("5_7gbo7")
 position = Vector2(384, 169)
 part = ExtResource("19_cjs4r")
 
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Metalbits" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-924, 827)
+texture = ExtResource("20_8pbpe")
+
+[node name="Metalbitt" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-671, 864)
+texture = ExtResource("21_x7xu7")
+
+[node name="WaterTower" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-834, 632)
+texture = ExtResource("22_n8kvh")
+
+[node name="Wire" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-294, 407)
+texture = ExtResource("23_2vgmh")
+
+[node name="Wire2" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-294, 407)
+texture = ExtResource("23_2vgmh")
+
+[node name="Metalbits2" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(254.5, 850)
+texture = ExtResource("20_8pbpe")
+
+[node name="Metalbitt2" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(507.5, 887)
+texture = ExtResource("21_x7xu7")
+
+[node name="WaterTower2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(344.5, 655)
+texture = ExtResource("22_n8kvh")
+
+[node name="Wire3" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(884.5, 430)
+texture = ExtResource("23_2vgmh")
+
+[node name="Wire4" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(884.5, 430)
+texture = ExtResource("23_2vgmh")
+
+[node name="Metalbits3" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(211.5, 67)
+texture = ExtResource("20_8pbpe")
+
+[node name="Metalbitt3" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(464.5, 104)
+texture = ExtResource("21_x7xu7")
+
+[node name="WaterTower3" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(301.5, -128)
+texture = ExtResource("22_n8kvh")
+
+[node name="Wire5" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(841.5, -353)
+texture = ExtResource("23_2vgmh")
+
+[node name="Wire6" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(841.5, -353)
+texture = ExtResource("23_2vgmh")
+
 [connection signal="body_entered" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
 [connection signal="body_exited" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet2/FleetInitalizer/Area2D" to="EnemyFleet2/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet2/FleetInitalizer/Area2D" to="EnemyFleet2/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet3/FleetInitalizer/Area2D" to="EnemyFleet3/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet3/FleetInitalizer/Area2D" to="EnemyFleet3/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
 
 [editable path="CarUnit"]
 [editable path="CarUnit2"]

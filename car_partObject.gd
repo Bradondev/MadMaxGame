@@ -34,7 +34,7 @@ func PartChange()->void:
 		effect.emitting= true
 		effect.finished.connect(effect.queue_free)
 		print_debug("replace")
-func CreateNewCar(Part: CarPart, OtherPart: CarPart) -> car:
+func CreateNewCar(Part: CarPart, OtherPart: CarPart , weapon:CarPart = null) -> car:
 	var body_part: CarPart
 	var wheel_part: CarPart
 
@@ -63,6 +63,7 @@ func CreateNewCar(Part: CarPart, OtherPart: CarPart) -> car:
 	var new_car: car = CarScene.instantiate()
 	new_car.BodyPart = body_part
 	new_car.WheelPart = wheel_part
+	new_car.WeaponPart = weapon
 	
 	if(get_tree() != null):
 		var effect :GPUParticles2D= ParticleEffect.instantiate()
