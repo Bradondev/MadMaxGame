@@ -1,7 +1,9 @@
 extends Node2D
 class_name Gun
 
-@export var weapon: Weapon
+@export var weapon: Weapon :
+	get():
+		return get_parent().WeaponPart
 @export var muzzle_position: Node2D
 @export var gun_sprite: Sprite2D
 

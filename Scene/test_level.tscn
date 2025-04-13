@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxxsq8nfxacyp"]
+[gd_scene load_steps=27 format=3 uid="uid://dxxsq8nfxacyp"]
 
 [ext_resource type="Texture2D" uid="uid://cxv2wof2ulqts" path="res://Assests/Bg.png" id="1_5jhp1"]
 [ext_resource type="PackedScene" uid="uid://ir2m2n5gvxcv" path="res://Scene/fleet_manger.tscn" id="1_ifsfr"]
@@ -17,12 +17,68 @@
 [ext_resource type="Resource" uid="uid://bv2msb1tic0cf" path="res://Resources/Wheels/wheel1.tres" id="9_6elmv"]
 [ext_resource type="Script" uid="uid://cfcejmil3kgq6" path="res://Code/ResourceCode/Weapon.gd" id="11_ab3th"]
 [ext_resource type="Resource" uid="uid://cs2u58afrt5by" path="res://Resources/Weapons/TestWeapon.tres" id="12_14iix"]
-[ext_resource type="Script" uid="uid://boe33gck6h3a4" path="res://Code/enemy_detection_manager.gd" id="15_5oafe"]
-[ext_resource type="Resource" uid="uid://dp30a3lpucijo" path="res://Resources/Weapons/weapon3.tres" id="19_cjs4r"]
+[ext_resource type="Script" uid="uid://boe33gck6h3a4" path="res://enemy_detection_manager.gd" id="15_5oafe"]
+[ext_resource type="PackedScene" uid="uid://c6ox5nhhmlwdb" path="res://Scene/static_object.tscn" id="19_6elmv"]
+[ext_resource type="Resource" uid="uid://dbgte6ypw2rjj" path="res://Resources/Weapons/weapon3.tres" id="19_n8kvh"]
+[ext_resource type="Resource" uid="uid://rjn1mmxwblo1" path="res://Resources/Bodys/body3.tres" id="20_2vgmh"]
+[ext_resource type="Texture2D" uid="uid://c65akj4of37wl" path="res://Assests/waterTower.png" id="20_ab3th"]
+[ext_resource type="Resource" uid="uid://b8wb40kmt8g2n" path="res://Resources/Wheels/wheel3.tres" id="21_a7uk4"]
+[ext_resource type="Texture2D" uid="uid://cbju40rktdbyp" path="res://Assests/Metalbits.png" id="21_ab3th"]
+[ext_resource type="Texture2D" uid="uid://s0m224xj08mr" path="res://Assests/metalbitt.png" id="22_14iix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7pb6t"]
 
 [node name="TestLevel" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(320, 180)
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(1629, -1021)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(2373, 716)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(699, 1885)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-1459, 1396)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-1767, -263)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-363, -1300)
+rotation = 1.309
+texture = ExtResource("1_5jhp1")
 
 [node name="FleetManger" parent="." node_paths=PackedStringArray("cars", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
 explosionEffec = ExtResource("2_edqjk")
@@ -60,53 +116,153 @@ shape = SubResource("CircleShape2D_7pb6t")
 script = ExtResource("15_5oafe")
 fleetManager = NodePath("../..")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(320, 180)
-texture = ExtResource("1_5jhp1")
+[node name="EnemyFleet2" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(1629, -1021)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet2" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(1454, -528)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(2373, 716)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="Area2D" type="Area2D" parent="EnemyFleet2/FleetInitalizer"]
+collision_layer = 0
 
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(699, 1885)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet2/FleetInitalizer/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
 
-[node name="Sprite2D5" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(-1459, 1396)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="FleetPositionMange" parent="EnemyFleet2/FleetInitalizer" instance=ExtResource("3_thy57")]
 
-[node name="Sprite2D6" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(-1767, -263)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet2/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
 
-[node name="Sprite2D7" type="Sprite2D" parent="."]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(-363, -1300)
-rotation = 1.309
-texture = ExtResource("1_5jhp1")
+[node name="EnemyFleet3" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet3" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(1960, 624)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet3/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet3/FleetInitalizer/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet3/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet3/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
+
+[node name="EnemyFleet4" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet4" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(1960, 624)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet4/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet4/FleetInitalizer/Area2D"]
+position = Vector2(-1615, 646)
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet4/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet4/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
+
+[node name="EnemyFleet5" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet5" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(1865, -1916)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet5/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet5/FleetInitalizer/Area2D"]
+position = Vector2(-1615, 646)
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet5/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet5/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
+
+[node name="EnemyFleet6" parent="." node_paths=PackedStringArray("playerFleet", "fleet_position_holder") instance=ExtResource("1_ifsfr")]
+playerFleet = NodePath("../FleetManger")
+explosionEffec = ExtResource("2_edqjk")
+averaged_settings = ExtResource("2_ifsfr")
+fleet_position_holder = NodePath("FleetInitalizer/FleetPositionMange")
+
+[node name="FleetInitalizer" type="Node2D" parent="EnemyFleet6" node_paths=PackedStringArray("fleetManager")]
+position = Vector2(391, 424)
+script = ExtResource("4_2ue6q")
+fleetManager = NodePath("..")
+enemiesMinMax = Vector2(1, 3)
+enemyBodyParts = Array[ExtResource("5_7pb6t")]([ExtResource("6_5oafe"), ExtResource("7_edqjk")])
+enemyWheelParts = Array[ExtResource("8_cjs4r")]([ExtResource("9_6elmv"), ExtResource("5_7gbo7")])
+enemyWeaponParts = Array[ExtResource("11_ab3th")]([ExtResource("12_14iix"), ExtResource("4_1tbln")])
+enemy_scene = ExtResource("3_si1yy")
+
+[node name="Area2D" type="Area2D" parent="EnemyFleet6/FleetInitalizer"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFleet6/FleetInitalizer/Area2D"]
+position = Vector2(-1615, 646)
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_7pb6t")
+
+[node name="FleetPositionMange" parent="EnemyFleet6/FleetInitalizer" instance=ExtResource("3_thy57")]
+
+[node name="EnemyDetectionManager" type="Node" parent="EnemyFleet6/FleetInitalizer" node_paths=PackedStringArray("fleetManager")]
+script = ExtResource("15_5oafe")
+fleetManager = NodePath("../..")
 
 [node name="FleetPositionManger" parent="." instance=ExtResource("3_thy57")]
 position = Vector2(333, 162)
@@ -166,10 +322,333 @@ part = ExtResource("5_7gbo7")
 position = Vector2(384, 169)
 part = ExtResource("19_cjs4r")
 
+[node name="CarPart4" parent="." instance=ExtResource("3_si1yy")]
+position = Vector2(514, 195)
+part = ExtResource("19_n8kvh")
+
+[node name="CarPart5" parent="." instance=ExtResource("3_si1yy")]
+position = Vector2(514, 195)
+part = ExtResource("20_2vgmh")
+
+[node name="CarPart6" parent="." instance=ExtResource("3_si1yy")]
+position = Vector2(514, 195)
+part = ExtResource("21_a7uk4")
+
+[node name="static" type="Node2D" parent="."]
+
+[node name="StaticObject" parent="static" instance=ExtResource("19_6elmv")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(93, 221)
+
+[node name="StaticObject2" parent="static" instance=ExtResource("19_6elmv")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(468, 670)
+rotation = -2.92638
+
+[node name="StaticObject3" parent="static" instance=ExtResource("19_6elmv")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(458, -279)
+
+[node name="StaticObject4" parent="static" instance=ExtResource("19_6elmv")]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-1108, 406)
+rotation = 0.679858
+
+[node name="StaticObject5" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-1589, 307)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject5/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject6" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-164, -547)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject6/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject7" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-1167, 34)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject7/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject8" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(208, -88)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject8/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject9" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(885, 313)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject9/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject10" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(134, 719)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject10/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject11" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-630, 642)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject11/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject12" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-815, 534)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject12/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject13" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(72, 536)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject13/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject14" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(779, 185)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject14/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject15" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(761, -649)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject15/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject16" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-351, -734)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject16/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject26" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-767.5, -171)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject26/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject27" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-952.5, -279)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject27/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject28" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-65.5, -277)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject28/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject29" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(641.5, -628)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject29/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject30" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(623.5, -1462)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject30/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject31" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-488.5, -1547)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject31/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject32" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(934.5, 43)
+texture = ExtResource("20_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject32/StaticBody2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-20, -21, 26, -18, 26, 29, -21, 30)
+
+[node name="StaticObject33" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(749.5, -65)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject33/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject34" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(1636.5, -63)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject34/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject35" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(2343.5, -414)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject35/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject36" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(2325.5, -1248)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject36/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject37" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(1213.5, -1333)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject37/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject17" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-1818, -798)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject17/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject18" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-2031, -51)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject18/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject19" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-1682, 1044)
+texture = ExtResource("21_ab3th")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject19/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject20" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-1534, 1023)
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject20/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject21" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(-948, 825)
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject21/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject22" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(430, 541)
+rotation = 2.14606
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject22/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject23" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(430, 541)
+rotation = 4.6365
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject23/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject24" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(1107, 392)
+rotation = 4.6365
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject24/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
+[node name="StaticObject25" parent="static" instance=ExtResource("19_6elmv")]
+position = Vector2(1107, 392)
+rotation = 4.6365
+texture = ExtResource("22_14iix")
+
+[node name="CollisionPolygon2D" parent="static/StaticObject25/StaticBody2D" index="0"]
+polygon = PackedVector2Array()
+
 [connection signal="body_entered" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
 [connection signal="body_exited" from="EnemyFleet/FleetInitalizer/Area2D" to="EnemyFleet/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet2/FleetInitalizer/Area2D" to="EnemyFleet2/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet2/FleetInitalizer/Area2D" to="EnemyFleet2/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet3/FleetInitalizer/Area2D" to="EnemyFleet3/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet3/FleetInitalizer/Area2D" to="EnemyFleet3/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet4/FleetInitalizer/Area2D" to="EnemyFleet4/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet4/FleetInitalizer/Area2D" to="EnemyFleet4/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet5/FleetInitalizer/Area2D" to="EnemyFleet5/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet5/FleetInitalizer/Area2D" to="EnemyFleet5/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
+[connection signal="body_entered" from="EnemyFleet6/FleetInitalizer/Area2D" to="EnemyFleet6/FleetInitalizer/EnemyDetectionManager" method="playerEnteredRange"]
+[connection signal="body_exited" from="EnemyFleet6/FleetInitalizer/Area2D" to="EnemyFleet6/FleetInitalizer/EnemyDetectionManager" method="playerExitedRange"]
 
 [editable path="CarUnit"]
 [editable path="CarUnit2"]
 [editable path="CarUnit3"]
 [editable path="CarUnit4"]
+[editable path="static/StaticObject5"]
+[editable path="static/StaticObject6"]
+[editable path="static/StaticObject7"]
+[editable path="static/StaticObject8"]
+[editable path="static/StaticObject9"]
+[editable path="static/StaticObject10"]
+[editable path="static/StaticObject11"]
+[editable path="static/StaticObject12"]
+[editable path="static/StaticObject13"]
+[editable path="static/StaticObject14"]
+[editable path="static/StaticObject15"]
+[editable path="static/StaticObject16"]
+[editable path="static/StaticObject26"]
+[editable path="static/StaticObject27"]
+[editable path="static/StaticObject28"]
+[editable path="static/StaticObject29"]
+[editable path="static/StaticObject30"]
+[editable path="static/StaticObject31"]
+[editable path="static/StaticObject32"]
+[editable path="static/StaticObject33"]
+[editable path="static/StaticObject34"]
+[editable path="static/StaticObject35"]
+[editable path="static/StaticObject36"]
+[editable path="static/StaticObject37"]
+[editable path="static/StaticObject17"]
+[editable path="static/StaticObject18"]
+[editable path="static/StaticObject19"]
+[editable path="static/StaticObject20"]
+[editable path="static/StaticObject21"]
+[editable path="static/StaticObject22"]
+[editable path="static/StaticObject23"]
+[editable path="static/StaticObject24"]
+[editable path="static/StaticObject25"]

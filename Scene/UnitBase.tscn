@@ -20,6 +20,7 @@ friction = 0.0
 bounce = 1.0
 
 [node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon", "carcontroller", "Cam")]
+collision_mask = 17
 physics_material_override = SubResource("PhysicsMaterial_js2t5")
 gravity_scale = 0.0
 angular_damp = 0.1

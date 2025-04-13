@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://baca2b3jqrfs8" path="res://Assests/ParticleTextures/Explosion.png" id="1_1um4s"]
 
 [sub_resource type="Gradient" id="Gradient_yck7r"]
-offsets = PackedFloat32Array(0, 0.881579, 1)
-colors = PackedColorArray(0.774148, 0.345744, 7.70092e-07, 1, 0.22105, 0.201321, 0.185399, 1, 0.194349, 0.194349, 0.194349, 1)
+offsets = PackedFloat32Array(0.00293255, 0.56305, 0.958944)
+colors = PackedColorArray(0.772549, 0.345098, 0, 0.482353, 0.219608, 0.2, 0.184314, 0.435294, 0.198707, 0.19663, 0.194954, 0.764912)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7h117"]
 gradient = SubResource("Gradient_yck7r")

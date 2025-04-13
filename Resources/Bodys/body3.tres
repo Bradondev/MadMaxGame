@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Body" load_steps=3 format=3 uid="uid://rjn1mmxwblo1"]
 
-[ext_resource type="Texture2D" uid="uid://c008in8g3cthh" path="res://Assests/CarParts/car4/Body.png" id="1_w6sme"]
+[ext_resource type="Texture2D" uid="uid://dug3evnprx3b2" path="res://Assests/CarParts/Body.png" id="1_6ldgy"]
 [ext_resource type="Script" uid="uid://byrnnkgvdi4fg" path="res://Code/ResourceCode/Body.gd" id="2_gvnlp"]
 
 [resource]
@@ -8,5 +8,5 @@ script = ExtResource("2_gvnlp")
 Health = 80.0
 TypeOfPart = "Body"
 part_name = "Unnamed Part"
-icon = ExtResource("1_w6sme")
+icon = ExtResource("1_6ldgy")
 metadata/_custom_type_script = "uid://byrnnkgvdi4fg"
