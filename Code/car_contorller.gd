@@ -94,5 +94,5 @@ func _physics_process(delta: float) -> void:
 	var direction_multiplier = -1.0 if current_speed >= 0.0 else  1.0
 	var available_steering =  1
 	var steer_amount = steer_input * averaged_settings.steer_speed * normalized_speed * available_steering
-	current_steer = lerp(current_steer, steer_amount, 5 * delta)
+	current_steer = lerp(current_steer, steer_amount, 10 * delta)
 	get_parent().rotation +=  current_steer * direction_multiplier 

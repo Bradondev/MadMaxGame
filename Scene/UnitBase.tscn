@@ -27,7 +27,7 @@ bounce = 1.0
 [node name="CarUnit" type="RigidBody2D" node_paths=PackedStringArray("BodyIcon", "WheelIcon", "WeaponIcon", "carcontroller", "Cam")]
 physics_material_override = SubResource("PhysicsMaterial_js2t5")
 gravity_scale = 0.0
-angular_damp = 0.1
+angular_damp = 1000.0
 script = ExtResource("1_w5bri")
 BodyPart = ExtResource("2_cl1je")
 WeaponPart = ExtResource("3_ix1j5")

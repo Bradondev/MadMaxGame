@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://jo25gdlaojdq" path="res://Code/projectlie_base.gd" id="1_bpgjf"]
 [ext_resource type="Texture2D" uid="uid://bg5pc1v8eq435" path="res://Assests/BulletShadowt.png" id="2_68qmb"]
-[ext_resource type="PackedScene" path="res://Scene/explosion_base.tscn" id="2_og70o"]
-[ext_resource type="PackedScene" path="res://Scene/grenadeexplosion.tscn" id="3_drx6v"]
+[ext_resource type="PackedScene" uid="uid://dri4fhb4bwfu4" path="res://Scene/explosion_base.tscn" id="2_og70o"]
+[ext_resource type="PackedScene" uid="uid://dt6eyr0bowwlr" path="res://Scene/grenadeexplosion.tscn" id="3_drx6v"]
 [ext_resource type="Texture2D" uid="uid://cmnct56u8mcuc" path="res://Assests/Bullet.png" id="3_og70o"]
 [ext_resource type="AudioStream" uid="uid://d0hhnrvt2mtom" path="res://Assests/AudioEffects/grenadeexplosion2.wav" id="4_drx6v"]
 
